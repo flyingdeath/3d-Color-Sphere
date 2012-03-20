@@ -26,13 +26,16 @@
     var controls = userControlObj.createControls(sceneObj.camera, 
                                                   {conType:'firstPerson',
                                                    lookSpeed: 0.095,
-                                                   movementSpeed:40.0, 
-                                                   initPos:new THREE.Vector3( 10, 10, 10 ), 
-                                                   initLookAtPos: new THREE.Vertex(0, 0, 0) });
+                                                   movementSpeed:60.0, 
+                                                   initPos:new THREE.Vector3( 100, 50, 100 ), 
+                                                   initLookAtPos: new THREE.Vector3(0, 600, 0) });
                                                    
     
    //var wp = new waterPsychicsClass({'scene':sceneObj.scene, 'containerId': containerId});
    //wp.createWaterBase({  bg: 0x0c2734, o: 1, width:20000, height:20000, sHeight:5, sWidth:5  });
+   
+   
+   
         
 
     var sd = new screenDebuggerClass({'scene':sceneObj.scene, 'containerId': containerId});
@@ -42,7 +45,11 @@
     element.stats      = sd.createStats();
     element.pointLight = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
                                                                                                x:300,y:300,z:0});
-                                                 
+   
+   
+    
+    var geo = new geometric3dShapes({'scene':sceneObj.scene});
+   
 
     element.scene      = sceneObj.scene;
     element.camera     = sceneObj.camera;
