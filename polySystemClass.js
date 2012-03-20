@@ -10,7 +10,7 @@ function polySystemClass(options){
   this.createSlider('width',[1,this.radius*2],1,this.radius);
   this.createSlider('height',[1,this.radius*2],1,this.radius);
   this.createSlider('size',[1,this.radius*2],1,this.radius);
-  this.createSlider('value',[1,100],1,100);
+  this.createSlider('value',[1,50],1,10);
   
 }
 
@@ -230,9 +230,9 @@ polySystemClass.prototype.drawPolygon = function(rawDiff, points, pos, closePath
     var value = document.getElementById('value_valueBox');
     var v = parseInt(value.value);
     value = null;
-    var range = 30;
-    var step = 5;
-    for(var i = (v - range);i<(v + range);i += step){
+    var range = 100;
+    var step = 10/(v*0.1);
+    for(var i =  (0) ;i<(range);i += step){
       this.appendOutput(this.colorOfPoints(rawDiff,primePoints,i*0.01));
     }
 }
@@ -268,9 +268,9 @@ polySystemClass.prototype.appendOutput = function(text){
     
     for(var i = 0;i < set.length;i++){
       ret += '<div class="colorUnit"><div style="background-color:'+set[i][3]+';"class="color">'+
-            '</div><div>'+this.colorToHex(set[i][0],set[i][1],set[i][2])+'</div></div>'
+            '</div><div>'+this.colorToHex(set[i][0],set[i][1],set[i][2])+'</div></div>&nbsp;'
     }
-    return ret + "|";
+    return ret + "&nbsp;&nbsp;|&nbsp;&nbsp;";
  }
  
  polySystemClass.prototype.colorToHex = function colorToHex(red,green,blue) {
