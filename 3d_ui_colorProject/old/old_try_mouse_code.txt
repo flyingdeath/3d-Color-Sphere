@@ -1,0 +1,23 @@
+/*
+  document.onmousemove = onDocumentMouseMove;
+  
+function onDocumentMouseMove(sen, cam, ren){
+  var scene = sen, camera = cam, renderer = ren;
+  return function(event){
+  
+   }
+  }
+function onDocumentMouseMove( event ) {
+    
+    event.preventDefault();
+    var mouse2D = {};
+    mouse2D.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse2D.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+    mouse3D = projector.unprojectVector( mouse2D.clone(), camera );
+    
+    camera.lookAt( mouse3D );
+    renderer.render(scene, camera);
+}
+
+*/

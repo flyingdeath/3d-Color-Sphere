@@ -1,0 +1,7 @@
+ //   var s = String(YAHOO.lang.JSON.stringify(eventObj.constructor));
+  var keys= {};
+  for(var i in eventObj.constructor){
+    keys[String(eventObj.constructor[i])] = i;
+  }
+  var s = String(YAHOO.lang.JSON.stringify(keys));
+ 

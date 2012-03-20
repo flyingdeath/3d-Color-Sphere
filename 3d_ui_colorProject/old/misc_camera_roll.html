@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - roll camera</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+		    body {
+			color: #000;
+			font-family:Monospace;
+			font-size:13px;
+			text-align:center;
+			font-weight: bold;
+
+			background-color: #fff;
+			margin: 0px;
+			overflow: hidden;
+		    }
+
+		    #info {
+					color:#000;
+			position: absolute;
+			top: 0px; width: 100%;
+			padding: 5px;
+
+		    }
+
+		    a { color: red; }
+
+		</style>
+	</head>
+
+	<body>
+		<div id="container"></div>
+		<div id="info">
+
+			WASD move, RF up/down, QE roll,	mouse look around
+		</div>
+
+		<script src="three_js/build/Three.js"></script>
+
+		<script src="three_js/examples/js/Detector.js"></script>
+		<script src="three_js/examples/js/RequestAnimationFrame.js"></script>
+		<script src="three_js/examples/js/Stats.js"></script>
+
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var container, stats;
+
+			var camera, controls, scene, renderer;
+
+			var cross;
+
+			init();
+			animate();
+
+			function init() {
+
+				// scene and camera
+
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2( 0xffffff, 0.002 );
+
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+
+				controls = new THREE.RollControls( camera );
+
+				controls.movementSpeed = 100;
+				controls.lookSpeed = 3;
+				controls.constrainVertical = [ -0.5, 0.5 ];
+				//controls.autoForward = true;
+
+				// world
+
+   var line_material = new THREE.LineBasicMaterial( { color: 0x000000, opacity: 1 } ),
+     geometry = new THREE.Geometry(),
+     floor = -0.04, step = 1, size = 14;
+
+   for ( var i = 0; i <= size / step * 2; i ++ ) {
+
+     geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( - size, floor, i * step - size ) ) );
+     geometry.vertices.push( new THREE.Vertex( new THREE.Vector3(   size, floor, i * step - size ) ) );
+
+     geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( i * step - size, floor, -size ) ) );
+     geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( i * step - size, floor,  size ) ) );
+
+   }
+
+   var line = new THREE.Line( geometry, line_material, THREE.LinePieces );
+   scene.add( line );
+
+				scene.add( camera );
+
+				// lights
+
+				light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( 1, 1, 1 );
+				scene.add( light );
+
+				light = new THREE.DirectionalLight( 0x002288 );
+				light.position.set( -1, -1, -1 );
+				scene.add( light );
+
+				light = new THREE.AmbientLight( 0x222222 );
+				scene.add( light );
+
+
+				// renderer
+
+				renderer = new THREE.WebGLRenderer( { antialias: false } );
+				renderer.setClearColorHex( 0xffffff, 1 );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				container = document.getElementById( 'container' );
+				container.appendChild( renderer.domElement );
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				stats.domElement.style.zIndex = 100;
+				container.appendChild( stats.domElement );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				render();
+				stats.update();
+
+			}
+
+			function render() {
+
+				controls.update();
+				renderer.render( scene, camera );
+
+			}
+
+
+		</script>
+
+	</body>
+</html>
