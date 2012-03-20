@@ -1,4 +1,10 @@
-(function() {
+window.onload = function() {
+
+      var b = document.body;
+      var c = document.getElementsByTagName('canvas')[0];
+      var a = c.getContext('2d');
+      document.body.clientWidth; // fix bug in webkit: http://qfox.nl/weblog/218
+      var polySys = new polySystemClass({ctx:a,radius: 190});
 
     // Declare constants and variables to help with minification
     // Some of these are inlined (with comments to the side with the actual equation)
@@ -6,12 +12,13 @@
     doc.c = doc.createElement;
     b.a = b.appendChild;
     
+ //  var input = document.getElementById("value_valueBox");
+      //  input = b.a(doc.c("input")),
     var width = c.width = c.height = 400,
         label = b.a(doc.c("p")),
-        input = b.a(doc.c("input")),
         imageData = a.createImageData(width, width),
         pixels = imageData.data,
-        oneHundred = input.value = input.max = 100,
+        oneHundred = 100,
         circleOffset = 10,
         diameter = 380,                  //width-circleOffset*2,
         radius = 190,                    //diameter / 2,
@@ -21,6 +28,7 @@
         currentY = oneHundred,
         currentX = -currentY,
         wheelPixel = 16040;              // circleOffset*4*width+circleOffset*4;
+        
  
     // Math helpers
     var math = Math,
@@ -30,12 +38,12 @@
         atan2 = math.atan2;
     
     // Setup DOM properties
-    b.style.textAlign="center";
-    label.style.font = "2em courier";
-    input.type = "range";
+    //b.style.textAlign="center";
+   // label.style.font = "2em courier";
+   // input.type = "range";
     
     // Load color wheel data into memory.
-    for (y = input.min = 0; y < width; y++) {
+    for (y = 0; y < width; y++) {
         for (x = 0; x < width; x++) {
             var rx = x - radius,
                 ry = y - radius,
@@ -55,14 +63,14 @@
     }
     
     // Bind Event Handlers
-    input.onchange = redraw;
+  //  input.onchange = redraw;
     c.onmousedown = doc.onmouseup = function(e) {
         // Unbind mousemove if this is a mouseup event, or bind mousemove if this a mousedown event
         doc.onmousemove = /p/.test(e.type) ? 0 : (redraw(e), redraw);
     }
 
     // Handle manual calls + mousemove event handler + input change event handler all in one place.
-    function redraw(e) {
+    var redraw = function(e) {
     
         // Only process an actual change if it is triggered by the mousemove or mousedown event.
         // Otherwise e.pageX will be undefined, which will cause the result to be NaN, so it will fallback to the current value
@@ -83,11 +91,11 @@
             d = currentX * currentX + currentY * currentY;
         }
         
-        label.textContent = b.style.background = hsvToRgb(
-            (theta + PI) / PI2,         // Current hue (how many degrees along the circle)
-            sqrt(d) / radius,           // Current saturation (how close to the middle)
-            input.value / oneHundred    // Current value (input type="range" slider value)
-        )[3];
+      //  label.textContent  = hsvToRgb(
+      //      (theta + PI) / PI2,         // Current hue (how many degrees along the circle)
+      //      sqrt(d) / radius,           // Current saturation (how close to the middle)
+      //      input.value / oneHundred    // Current value (input type="range" slider value)
+      //  )[3];
         
         // Reset to color wheel and draw a spot on the current location. 
         a.putImageData(imageData, 0, 0);
@@ -100,16 +108,20 @@
         a.fillRect(currentX+radiusPlusOffset,currentY+radiusPlusOffset, 6, 6);
         */
         /*
+        */
         // Circle:
         a.beginPath();  
         a.strokeStyle = '#000';
         a.arc(~~currentX+radiusPlusOffset,~~currentY+radiusPlusOffset, 4, 0, PI2);
         a.stroke();
-        */
+        
+        polySys.update([currentX, currentY], 
+                       [~~currentX+radiusPlusOffset,~~currentY+radiusPlusOffset]);
+        
         
         // Heart:
-        a.font = "1em arial";
-        a.fillText("♥", currentX+radiusPlusOffset-4,currentY+radiusPlusOffset+4);
+      //  a.font = "1em arial";
+      //  a.fillText("♥", currentX+radiusPlusOffset-4,currentY+radiusPlusOffset+4);
         
     }
     
@@ -129,6 +141,7 @@
         
         return [r, g, b, "rgb("+ ~~r + "," + ~~g + "," + ~~b + ")"];
     }
+    polySys.updateObjects(redraw);
     
     // Kick everything off
     redraw(0);
@@ -148,4 +161,4 @@
     }, 700)
     */
     
-})();
+}
