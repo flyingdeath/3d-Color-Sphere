@@ -232,8 +232,11 @@ polySystemClass.prototype.drawPolygon = function(rawDiff, points, pos, closePath
     value = null;
     var range = 100;
     var step = 10/(v*0.1);
-    for(var i =  (0) ;i<(range);i += step){
-      this.appendOutput(this.colorOfPoints(rawDiff,primePoints,i*0.01));
+    if(v > 0){
+      for(var i =  (0) ;i<(range);i += step){
+          this.appendOutput(this.colorOfPoints(rawDiff,primePoints,i*0.01 ));
+       //   this.appendOutput(this.colorOfPoints(rawDiff,primePoints,1 - i*0.01 ));
+      }
     }
 }
 
