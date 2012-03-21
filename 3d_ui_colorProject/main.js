@@ -27,12 +27,13 @@
                                                   {conType:'firstPerson',
                                                    lookSpeed: 0.095,
                                                    movementSpeed:60.0, 
-                                                   initPos:new THREE.Vector3( 100, 50, 100 ), 
-                                                   initLookAtPos: new THREE.Vector3(0, 600, 0) });
+                                                   initPos:       new THREE.Vector3(752,431,-48),
+                                                   initLookAtPos: new THREE.Vector3(653,445,-44)
+                                                  });
                                                    
     
-   //var wp = new waterPsychicsClass({'scene':sceneObj.scene, 'containerId': containerId});
-   //wp.createWaterBase({  bg: 0x0c2734, o: 1, width:20000, height:20000, sHeight:5, sWidth:5  });
+  // var wp = new waterPsychicsClass({'scene':sceneObj.scene, 'containerId': containerId,
+  //                                  options: { bg: 0x0c2734, o: 1, width:20000, height:20000, sHeight:5, sWidth:5}});
    
    
    
@@ -55,7 +56,7 @@
     element.camera     = sceneObj.camera;
     element.renderer   = sceneObj.renderer;
     element.controls   = controls;
-   // element.wp         = wp;
+    element.wp         = wp;
     element.renderCallBack = sceneObj.options.renderCallBack;
   
     userControlObj.regKeyAction('DOM_VK_M', function(eventObj){
@@ -73,8 +74,8 @@
     
     var modelObj = new modelLoaderClass();
    // modelObj.loadModels([room], element, {mType:'json', fn: room_ready});
-   // modelObj.loadModels([sky], element, {mType:'json', fn: sky_ready});
-   // modelObj.loadModels([film_case], element, {mType:'collada', fn: film_case_ready});
+  //  modelObj.loadModels([sky], element, {mType:'json', fn: sky_ready});
+  //  modelObj.loadModels([film_case], element, {mType:'collada', fn: film_case_ready});
     
     sceneObj.render_animate(element);
     
@@ -83,7 +84,8 @@
   /*---------------------------------------------------------------------------------------*/
   
   var renderCallBack = function(element){
-    return 0;// return element.wp.waterMovementStep(element);
+    return 0;// 
+  //  return element.wp.waterMovementStep(element);
   }
   
   /*---------------------------------------------------------------------------------------*/
@@ -125,7 +127,9 @@
        mesh.rotation.x = -Math.PI;
        mesh.rotation.y = -Math.PI/2;
        mesh.rotation.z = -Math.PI/2;
-       mesh.translateY(560)
+       mesh.translateY(850)
+       mesh.translateX(-700)
+       mesh.translateZ(200)
       return mesh;
      }catch(err){
        debugger;

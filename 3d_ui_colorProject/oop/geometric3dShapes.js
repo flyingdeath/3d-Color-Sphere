@@ -22,15 +22,16 @@
   
   geometric3dShapes.prototype.initialize = function(){
   var rezStep = 200;
+    var initipos = new THREE.Vector3( 100, 600, 0 ) 
     var inside = this.init_plain({ width:200, height:200, sHeight:rezStep, sWidth:rezStep });
     var outside = this.init_plain({ width:200, height:200, sHeight:rezStep, sWidth:rezStep });
     var shape =  this.init_model_shape('sphere', rezStep);
     
     inside.rotation.x = Math.PI;
     outside.rotation.x = -Math.PI*2 ;
-    inside.position.set( 0, 200, 0 );
-    outside.position.set( 0, 200, 0 );
-    shape.position.set( 0, 200, 0 );
+    inside.position.set( initipos.x, initipos.y, initipos.z );
+    outside.position.set( initipos.x, initipos.y, initipos.z );
+    shape.position.set( initipos.x, initipos.y, initipos.z );
     this.mapPlain(inside,shape, -1);
     this.mapPlain(outside,shape, 1);
     
