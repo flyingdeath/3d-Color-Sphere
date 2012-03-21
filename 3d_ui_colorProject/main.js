@@ -56,7 +56,7 @@
     element.camera     = sceneObj.camera;
     element.renderer   = sceneObj.renderer;
     element.controls   = controls;
-    element.wp         = wp;
+    //element.wp         = wp;
     element.renderCallBack = sceneObj.options.renderCallBack;
   
     userControlObj.regKeyAction('DOM_VK_M', function(eventObj){
