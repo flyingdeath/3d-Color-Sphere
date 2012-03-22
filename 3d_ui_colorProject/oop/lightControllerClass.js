@@ -30,3 +30,11 @@ function lightControllerClass(options){
     this.scene.add( pointLight );
     return pointLight;
   }
+  
+  lightControllerClass.prototype.createDirectionalLight = function(options){
+    var pointLight = new THREE.DirectionalLight(options.bg, options.o);
+    //pointLight.position.x = 1000;
+    pointLight.position.set(options.x,options.y,options.z);
+    this.scene.add( pointLight );
+    return pointLight;
+  }
