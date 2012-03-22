@@ -27,8 +27,10 @@
                                                   {conType:'firstPerson',
                                                    lookSpeed: 0.095,
                                                    movementSpeed:60.0, 
-                                                   initPos:       new THREE.Vector3(752,431,-48),
-                                                   initLookAtPos: new THREE.Vector3(653,445,-44)
+                                                   initPos:       new THREE.Vector3(0,0,0),
+                                                   initLookAtPos: new THREE.Vector3(1,1,1)
+                                                  // initPos:       new THREE.Vector3(752,431,-48),
+                                                  // initLookAtPos: new THREE.Vector3(653,445,-44)
                                                   });
                                                    
     
@@ -46,6 +48,12 @@
     element.stats      = sd.createStats();
     element.pointLight = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
                                                                                                x:300,y:300,z:0});
+                                                                                               
+    element.pointLight2 = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
+                                                                                               x: 100,
+                                                                                               y:600,
+                                                                                               z:-250});
+   
    
    
     
