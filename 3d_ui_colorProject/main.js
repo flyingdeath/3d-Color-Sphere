@@ -27,8 +27,8 @@
                                                   {conType:'firstPerson',
                                                    lookSpeed: 0.095,
                                                    movementSpeed:60.0, 
-                                                   initPos:       new THREE.Vector3(0,0,0),
-                                                   initLookAtPos: new THREE.Vector3(1,1,1)
+                                                   initPos:       new THREE.Vector3(0,0,-200),
+                                                   initLookAtPos: new THREE.Vector3(0,0,0)
                                                   // initPos:       new THREE.Vector3(752,431,-48),
                                                   // initLookAtPos: new THREE.Vector3(653,445,-44)
                                                   });
@@ -88,8 +88,8 @@
    //element.pointLight8.intensity = i;
    
    
-    
-    var geo = new geometric3dShapes({'scene':sceneObj.scene});
+    // 100, 600, 0 
+    var geo = new geometric3dShapes({'scene':sceneObj.scene,initipos: new THREE.Vector3( 0,0,0)});
    
 
     element.scene      = sceneObj.scene;
