@@ -38,3 +38,11 @@ function lightControllerClass(options){
     this.scene.add( pointLight );
     return pointLight;
   }
+  
+  lightControllerClass.prototype.createAmbientLight = function(options){
+    var pointLight = new THREE.AmbientLight(options.bg, options.o);
+    //pointLight.position.x = 1000;
+    pointLight.position.set(options.x,options.y,options.z);
+    this.scene.add( pointLight );
+    return pointLight;
+  }

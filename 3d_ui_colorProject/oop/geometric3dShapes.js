@@ -117,7 +117,7 @@
                 //color.setHSV( (j + i) /geometry.vertices.length, 1.0, 1.0 );
                 var hue = (p.x + 200)/400 ;
                 var value = (p.y+ 200)/400 ;
-                var Sat = 400/(p.z+ 200) ;
+                var Sat = (p.z+ 200)/400 ;
                 
                 if(value >= 1.0 || value <= 0){
                   value = 1.0

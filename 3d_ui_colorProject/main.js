@@ -46,14 +46,46 @@
     sd.createOrthogonalLines(10000);
 
     element.stats      = sd.createStats();
-    element.pointLight = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
-                                                                                               x:300,y:300,z:0});
+//    element.pointLight = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
+//                                                                                               x:300,y:300,z:0});
                                                                                                
-    element.pointLight2 = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
-                                                                                               x: 100,
-                                                                                               y:600,
-                                                                                               z:-250});
-   
+//    element.pointLight2 = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
+//                                                                                               x: 100,
+//                                                                                               y:600,
+//                                                                                               z:-250});
+              
+              /*
+   element.pointLight3 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o:1.0,
+                                                                                              x: 0,
+                                                                                              y:0,
+                                                                                              z:0});
+                */                                                                            
+   var step = 1;
+   var i = 0.1
+   element.pointLight4 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o:i,
+                                                                                              x: step,
+                                                                                              y:0,
+                                                                                              z:0});
+   /*
+   element.pointLight5 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o: i ,
+                                                                                              x: -1*step,
+                                                                                              y:0,
+                                                                                              z:0});
+   */
+   /*
+   element.pointLight7 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o: i ,
+                                                                                              x: 0,
+                                                                                              y:0,
+                                                                                              z:step});
+   element.pointLight8 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o: i ,
+                                                                                              x: 0,
+                                                                                              y:0,
+                                                                                              z:-1*step});
+   */
+   element.pointLight4.intensity = i;
+   //element.pointLight5.intensity = i;
+  // element.pointLight7.intensity = i;
+   //element.pointLight8.intensity = i;
    
    
     
