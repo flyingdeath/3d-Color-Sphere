@@ -27,15 +27,15 @@
                                                   {conType:'firstPerson',
                                                    lookSpeed: 0.095,
                                                    movementSpeed:60.0, 
-                                                   initPos:       new THREE.Vector3(0,0,-200),
-                                                   initLookAtPos: new THREE.Vector3(0,0,0)
-                                                  // initPos:       new THREE.Vector3(752,431,-48),
-                                                  // initLookAtPos: new THREE.Vector3(653,445,-44)
+                                                   initPos:       new THREE.Vector3(20,20,20),
+                                                   initLookAtPos: new THREE.Vector3(2,10,2)
+                                                 //  initPos:       new THREE.Vector3(752,431,-48),
+                                                 //  initLookAtPos: new THREE.Vector3(653,445,-44)
                                                   });
                                                    
     
-  // var wp = new waterPsychicsClass({'scene':sceneObj.scene, 'containerId': containerId,
-  //                                  options: { bg: 0x0c2734, o: 1, width:20000, height:20000, sHeight:5, sWidth:5}});
+   //var wp = new waterPsychicsClass({'scene':sceneObj.scene, 'containerId': containerId,
+   //                                 options: { bg: 0x0c2734, o: 1, width:20000, height:20000, sHeight:5, sWidth:5}});
    
    
    
@@ -49,47 +49,16 @@
 //    element.pointLight = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
 //                                                                                               x:300,y:300,z:0});
                                                                                                
-//    element.pointLight2 = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
-//                                                                                               x: 100,
-//                                                                                               y:600,
-//                                                                                               z:-250});
-              
-              /*
-   element.pointLight3 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o:1.0,
-                                                                                              x: 0,
-                                                                                              y:0,
-                                                                                              z:0});
-                */                                                                            
    var step = 1;
    var i = 0.1
    element.pointLight4 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o:i,
                                                                                               x: step,
                                                                                               y:0,
                                                                                               z:0});
-   /*
-   element.pointLight5 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o: i ,
-                                                                                              x: -1*step,
-                                                                                              y:0,
-                                                                                              z:0});
-   */
-   /*
-   element.pointLight7 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o: i ,
-                                                                                              x: 0,
-                                                                                              y:0,
-                                                                                              z:step});
-   element.pointLight8 = new lightControllerClass({'scene':sceneObj.scene}).createAmbientLight({ bg: 0xffffff, o: i ,
-                                                                                              x: 0,
-                                                                                              y:0,
-                                                                                              z:-1*step});
-   */
+  
    element.pointLight4.intensity = i;
-   //element.pointLight5.intensity = i;
-  // element.pointLight7.intensity = i;
-   //element.pointLight8.intensity = i;
-   
-   
-    // 100, 600, 0 
-    var geo = new geometric3dShapes({'scene':sceneObj.scene,initipos: new THREE.Vector3( 0,0,0)});
+   //100, 600, 0
+    var geo = new geometric3dShapes({'scene':sceneObj.scene,initipos: new THREE.Vector3(  0, 0, 0  )});
    
 
     element.scene      = sceneObj.scene;
@@ -113,10 +82,10 @@
     });
     
     var modelObj = new modelLoaderClass();
-   // modelObj.loadModels([room], element, {mType:'json', fn: room_ready});
-  //  modelObj.loadModels([sky], element, {mType:'json', fn: sky_ready});
-  //  modelObj.loadModels([film_case], element, {mType:'collada', fn: film_case_ready});
-    
+  // modelObj.loadModels([room], element, {mType:'json', fn: room_ready});
+  // modelObj.loadModels([sky], element, {mType:'json', fn: sky_ready});
+  // modelObj.loadModels([film_case], element, {mType:'collada', fn: film_case_ready});
+
     sceneObj.render_animate(element);
     
     
@@ -125,7 +94,7 @@
   
   var renderCallBack = function(element){
     return 0;// 
-  //  return element.wp.waterMovementStep(element);
+  // return element.wp.waterMovementStep(element);
   }
   
   /*---------------------------------------------------------------------------------------*/
