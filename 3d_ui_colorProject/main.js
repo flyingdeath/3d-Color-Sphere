@@ -21,17 +21,31 @@
                                              });
                                              
     var userControlObj = new userControlsClass({'element': element, 
-                                                'containerId': containerId});
-                                                
+                                                'containerId': containerId,
+                                                'mouseDownCallBack':mouseDownCallBack,
+                                                'mouseMoveCallBack':mouseMoveCallBack,
+                                                'mouseUpCallBack':mouseUpCallBack });
+    var controlRadius = 250;
+    
     var controls = userControlObj.createControls(sceneObj.camera, 
                                                   {conType:'firstPerson',
                                                    lookSpeed: 0.095,
                                                    movementSpeed:60.0, 
-                                                   initPos:       new THREE.Vector3(20,20,20),
+                                                   rotateSpeed: 1.0,
+                                                   zoomSpeed: 1.2,
+                                                   panSpeed: 0.2,
+                                                   noZoom: false,
+                                                   noPan: false,
+                                                   staticMoving: false,
+                                                   dynamicDampingFactor: 0.3,
+                                                   minDistance: controlRadius * 1.1,
+                                                   maxDistance: controlRadius * 100,
+                                                   keys: [ 65, 83, 68 ], // [ rotateKey, zoomKey, panKey ]
+                                                   initPos:       new THREE.Vector3(0,0,0),
                                                    initLookAtPos: new THREE.Vector3(2,10,2)
                                                  //  initPos:       new THREE.Vector3(752,431,-48),
                                                  //  initLookAtPos: new THREE.Vector3(653,445,-44)
-                                                  });
+                                                  },sceneObj.renderer);
                                                    
     
    //var wp = new waterPsychicsClass({'scene':sceneObj.scene, 'containerId': containerId,
@@ -42,8 +56,8 @@
         
 
     var sd = new screenDebuggerClass({'scene':sceneObj.scene, 'containerId': containerId});
-    sd.createBaseGridStd();
-    sd.createOrthogonalLines(10000);
+  //  sd.createBaseGridStd();
+  //  sd.createOrthogonalLines(10000);
 
     element.stats      = sd.createStats();
 //    element.pointLight = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
@@ -59,15 +73,26 @@
    element.pointLight4.intensity = i;
    //100, 600, 0
     var geo = new geometric3dShapes({'scene':sceneObj.scene,initipos: new THREE.Vector3(  0, 0, 0  )});
+    
+    var hud = new hudPanels({'scene':sceneObj.scene,'size':20,initipos: new THREE.Vector3(  0, 0, 0  )});
    
 
+    element.sceneObj   = sceneObj;
     element.scene      = sceneObj.scene;
     element.camera     = sceneObj.camera;
     element.renderer   = sceneObj.renderer;
     element.controls   = controls;
-    //element.wp         = wp;
+    //element.wp       = wp;
+    element.geo        = geo;
+    element.hud        = hud;
+      element.d = (new debugClass({createNode:1, nodeId: 'test2'}))
+    element.containerId = containerId;
     element.renderCallBack = sceneObj.options.renderCallBack;
-  
+/*
+element.mouseMoveCallBack = sceneObj.options.mouseMoveCallBack;
+    element.mouseDownCallBack = sceneObj.options.mouseDownCallBack;
+    element.mouseUpCallBack = sceneObj.options.mouseUpCallBack;
+  */
     userControlObj.regKeyAction('DOM_VK_M', function(eventObj){
       var pos = owl.deepCopy(modelObj.getModelPosition(film_case));
      // pos.y = -1*pos.y
@@ -96,6 +121,44 @@
     return 0;// 
   // return element.wp.waterMovementStep(element);
   }
+  
+  var mouseMoveCallBack = function(pos,element){
+    var objects = element.geo.getViewableObjects();
+    element.hud.updatePosition(element.camera);
+  /*
+    if(intersects.length > 0){
+        YAHOO.util.Dom.setStyle(element.containerId,'cursor', 'pointer');
+    }else{
+      YAHOO.util.Dom.setStyle(element.containerId,'cursor', 'auto');
+    }
+    return 0;
+    */
+    
+  }
+  
+  var mouseDownCallBack = function(element){
+  /*
+    
+    return 0;
+    */
+  }
+  
+  var mouseUpCallBack = function(ray,element){
+      var direction = new THREE.Vector3( ray.direction.x, ray.direction.y, ray.direction.z );
+    
+      var origin = ray.origin.normalize();
+      var vector = origin.add(origin, direction);
+      
+      var rho = element.geo.rho(vector);
+      var phi = element.geo.phi(vector, rho);
+      var theta = element.geo.theta(vector);
+      var point = element.geo.getCartesian(phi,theta, rho * 200);
+      var color = element.geo.calculateColor(point) 
+         element.hud.changeColorOfPanel(color);
+         element.hud.updatePosition(element.camera);
+  }
+  
+  
   
   /*---------------------------------------------------------------------------------------*/
   

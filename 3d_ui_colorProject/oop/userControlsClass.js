@@ -5,6 +5,8 @@ function userControlsClass(options){
       this.initializeOptions(options);
       this.initialize();
       this.keyActions = {};
+      
+      this.projector = new THREE.Projector();
       this.d = new debugClass({createNode:1})
     }catch(err){
       debugger;
@@ -33,13 +35,78 @@ function userControlsClass(options){
   
   userControlsClass.prototype.setupMouseControls = function(element){
     var paramSet = {instanceObj: this, 'element':element};
+    
     YAHOO.util.Event.addListener(document.body, "mousewheel", this.mousePage, paramSet);
     YAHOO.util.Event.addListener(document.body, "DOMMouseScroll", this.mousePage, paramSet);
+    
     YAHOO.util.Event.addListener(this.containerId, "mouseout", this.mouseCut, paramSet);
     YAHOO.util.Event.addListener(this.containerId, "mouseover", this.mouseGue, paramSet);
+    
+    
+    YAHOO.util.Event.addListener(this.containerId, 'mousemove', this.mouseMove, paramSet );
+    
+    YAHOO.util.Event.addListener(this.containerId, 'mousedown', this.mouseDown, paramSet );
+    YAHOO.util.Event.addListener(this.containerId, 'mouseup', this.mouseUp, paramSet );
+    
   }
   
   
+  userControlsClass.prototype.mouseMove = function( eventObj, paramSet) {
+    paramSet.instanceObj.mouseMove_p(eventObj, paramSet.element);
+  }
+  
+  userControlsClass.prototype.mouseMove_p = function( event,element ) {
+   // event.preventDefault();
+    this.mouse ={};
+    this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  
+  /*
+  var camera = element.camera;
+  
+  
+    var vector = new THREE.Vector3( this.mouse.x, this.mouse.y, 0.5 );
+    this.projector.unprojectVector( vector, camera );
+  
+    var ray = new THREE.Ray( camera.position, vector.subSelf( camera.position ).normalize() );
+  */
+    if(this.mouseMoveCallBack){
+      this.mouseMoveCallBack(this.mouse,element);
+    }
+  }
+  
+  userControlsClass.prototype.mouseDown = function(eventObj, paramSet) {
+    paramSet.instanceObj.mouseDown_p(eventObj, paramSet.element);
+  }
+  
+  userControlsClass.prototype.mouseDown_p = function( event,element ) {
+  
+  //  event.preventDefault();
+  
+    if(this.mouseDownCallBack){
+      this.mouseDownCallBack(element);
+    }
+  }
+  
+  userControlsClass.prototype.mouseUp = function( eventObj, paramSet) {
+    paramSet.instanceObj.mouseUp_p(eventObj, paramSet.element);
+  }
+  
+  userControlsClass.prototype.mouseUp_p = function( event,element ) {
+  //  event.preventDefault();
+    var camera = element.camera;
+     this.mouse ={};
+    this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    var vector = new THREE.Vector3( this.mouse.x, this.mouse.y, 0.5 );
+    this.projector.unprojectVector( vector, camera );
+  
+    var ray = new THREE.Ray( camera.position, vector.subSelf( camera.position ).normalize() );
+    
+    if(this.mouseUpCallBack){
+      this.mouseUpCallBack(ray,element);
+    }
+  }
   
   userControlsClass.prototype.mouseCut = function(eventObj, paramSet){
     paramSet.instanceObj.mouseCut_p(eventObj, paramSet.element);
@@ -77,7 +144,7 @@ function userControlsClass(options){
   }
       
     
-  userControlsClass.prototype.createControls = function(camera, options){
+  userControlsClass.prototype.createControls = function(camera, options, ren){
     var controls;
     
      switch(options.conType){
@@ -85,7 +152,7 @@ function userControlsClass(options){
          controls = new THREE.FirstPersonControls(camera);
          break;
        case 'trackball':                  
-         controls = new THREE.TrackballControls(camera);  
+         controls = new THREE.TrackballControls(camera, ren.domElement);  
          break;
        case 'roll':                     
          controls = new THREE.RollControls(camera);   
@@ -99,7 +166,9 @@ function userControlsClass(options){
          break;
      }
      
-     controls.translate(options.initPos);
+     camera.position.setX(options.initPos.x);
+     camera.position.setY(options.initPos.y);
+     camera.position.setZ(options.initPos.z);
      
      if(options.initLookAtPos){
       controls.updateCords(options.initLookAtPos);

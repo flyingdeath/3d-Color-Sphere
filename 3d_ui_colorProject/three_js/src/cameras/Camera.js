@@ -5,12 +5,12 @@
 
 THREE.Camera = function () {
 
-	THREE.Object3D.call( this );
+  THREE.Object3D.call( this );
 
-	this.matrixWorldInverse = new THREE.Matrix4();
+  this.matrixWorldInverse = new THREE.Matrix4();
 
-	this.projectionMatrix = new THREE.Matrix4();
-	this.projectionMatrixInverse = new THREE.Matrix4();
+  this.projectionMatrix = new THREE.Matrix4();
+  this.projectionMatrixInverse = new THREE.Matrix4();
 
 };
 
@@ -19,14 +19,22 @@ THREE.Camera.prototype.constructor = THREE.Camera;
 
 THREE.Camera.prototype.lookAt = function ( vector ) {
 
-	// TODO: Add hierarchy support.
+  // TODO: Add hierarchy support.
+  this.target = vector;
+  this.matrix.lookAt( this.position, vector, this.up );
 
-	this.matrix.lookAt( this.position, vector, this.up );
+  if ( this.rotationAutoUpdate ) {
 
-	if ( this.rotationAutoUpdate ) {
+    this.rotation.getRotationFromMatrix( this.matrix );
 
-		this.rotation.getRotationFromMatrix( this.matrix );
-
-	}
+  }
 
 };
+
+THREE.Camera.prototype.getTarget = function (  ) {
+  return this.target;
+}
+
+
+
+

@@ -22,31 +22,35 @@
   }
   
   geometric3dShapes.prototype.initialize = function(){
-  var rezStep = 200;
-  var shapeType = 'sphere'
+    var rezStep = 200;
+    var shapeType = 'sphere'
     var shape =  this.init_model_shape(shapeType, rezStep);
     
-    var inside = this.init_plain({ width:this.size, height:this.size, 
+    this.inside = this.init_plain({ width:this.size, height:this.size, 
                                   sHeight:rezStep, sWidth:rezStep, 
                                   'shape': shape, scaler: -1, 'shapeType':shapeType});
-    var outside = this.init_plain({ width:this.size, height:this.size, 
+    this.outside = this.init_plain({ width:this.size, height:this.size, 
                                     sHeight:rezStep, sWidth:rezStep, 
                                   'shape': shape, scaler: 1,  'shapeType':shapeType });
     
-    inside.rotation.x = Math.PI;
-    outside.rotation.x = -Math.PI*2;
+    // this.inside.rotation.x = Math.PI;
+    this.outside.rotation.x = -Math.PI*2;
+    //this.inside.rotation.y = Math.PI*(3/4);
   
-   inside.position.set( this.initipos.x, this.initipos.y, this.initipos.z );
-   outside.position.set( this.initipos.x, this.initipos.y, this.initipos.z );
+   this.inside.position.set( this.initipos.x, this.initipos.y, this.initipos.z );
+   this.outside.position.set( this.initipos.x, this.initipos.y, this.initipos.z );
 
     
     
     //this.mapPlain(inside,shape, -1);
     
-   this.scene.add(inside);
-   this.scene.add(outside);
+  this.scene.add(this.inside);
+   this.scene.add(this.outside);
  //  this.scene.add(shape);
     
+  }
+  geometric3dShapes.prototype.getViewableObjects = function(){
+    return [this.outside];
   }
   
   geometric3dShapes.prototype.init_model_shape = function(sType,rezStep){
@@ -73,11 +77,8 @@
     }
     
     switch(options.shapeType){
-      case 'tube':
-        this.mapColorWheel(geometry,options.scaler, this.scaleColorTube);
-        break;
       default:
-        this.mapColorWheel(geometry,options.scaler, this.scaleColorTube);
+        this.mapColorWheel(geometry,options.scaler, this.scaleColor);
         break;
     }
     
@@ -115,18 +116,66 @@
       for( var j = 0; j < n; j++ ) {
         vertexIndex = f[ faceIndices[ j ] ];
         p = geometry.vertices[ vertexIndex ].position;
-        color = new THREE.Color( 0xffffff );
-        var hue   = scalcerFunc(p.x,scaler, this.size);
-        var value = scalcerFunc(p.y,scaler, this.size);
-        var Sat   = scalcerFunc(p.z,scaler, this.size);
-        color.setHSV( hue , Sat  ,value );
-        f.vertexColors[ j ] = color;
+        f.vertexColors[ j ] = this.calculateColor_p(p,scaler, 0);
       }
     }
   }
+  geometric3dShapes.prototype.getFaceColor = function(face){
+    var pos = this.getFaceColor_p(this.outside.geometry, 1,face);
+    return this.calculateColor(pos);
+  }
+  
+  geometric3dShapes.prototype.getFaceColor_p = function(geometry,scaler,f){
+    var colors = []
+    var faceIndices = [ 'a', 'b', 'c', 'd' ];
+    var p, n, vertexIndex;
+    n = ( f instanceof THREE.Face3 ) ? 3 : 4;
+    for( var j = 0; j < n; j++ ) {
+      vertexIndex = f[ faceIndices[ j ] ];
+      p = geometry.vertices[ vertexIndex ].position;
+      break;
+    }
+    return p;
+  }
   
   
-  geometric3dShapes.prototype.scaleColorSphere = function(v,scaler,size){
+  
+  
+    geometric3dShapes.prototype.calculateColor= function(pos){
+      return this.calculateColor_p(pos, -1, 0)
+    }
+    
+    geometric3dShapes.prototype.calculateColor_p = function(pos, scaler, rawDiff){
+      var value = this.scaleColor(pos.y,scaler, this.size);
+      var color = new THREE.Color( 0xffffff );
+      var color2d = this.postionColor(this.size, [pos.x + rawDiff,
+                                                  pos.z + rawDiff]);
+      var phi = this.phi(pos, this.rho(pos));
+      var theta = this.theta(pos);                    
+      color.setHSV(color2d[0],color2d[1] ,value );
+      return color;
+    }
+
+ 
+ geometric3dShapes.prototype.postionColor = function(radius,point) {
+   var currentX =  point[0];
+   var currentY =  point[1];
+    
+    var theta    = Math.atan2(currentY, currentX);
+    var d      = currentX * currentX + currentY * currentY;
+         
+    if (d > this.radiusSquared) {
+       currentX = radius * Math.cos(theta);
+       currentY = radius * Math.sin(theta);
+       theta = Math.atan2(currentY, currentX);
+       d = currentX * currentX + currentY * currentY;
+    } 
+    return [(theta + Math.PI) / (Math.PI * 2), 
+            Math.sqrt(d) / radius];
+  }
+     
+  
+  geometric3dShapes.prototype.scaleColorSphere_old = function(v,scaler,size){
     var ret = (-1*scaler*v+ size)/(size*2);
     if(isNaN(parseInt(ret))){ 
       ret = 1.0;
@@ -136,8 +185,12 @@
     return ret;
   }
   
-  geometric3dShapes.prototype.scaleColorTube = function(v,scaler,size){
-    var ret = (-1*scaler*v+ size)/(size*2);
+  geometric3dShapes.prototype.scaleColor = function(v,scaler,size){
+    return this.clipColor((-1*scaler*v+ size)/(size*2));
+  }
+  
+  geometric3dShapes.prototype.clipColor = function(v){
+    var ret = v;
     if(isNaN(parseInt(ret))){ 
       ret = 1.0;
     }else if(ret >= 1.0 ){
@@ -180,6 +233,39 @@
                               new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: true, transparent: true, opacity: 1 } )) ;
      return object ;
    }
+
+   geometric3dShapes.prototype.rho = function(pos){
+     var r = Math.sqrt(Math.pow(pos.x,2) + Math.pow(pos.y,2) + Math.pow(pos.z,2));
+     return r;
+   }
+   
+   geometric3dShapes.prototype.phi = function(pos, rho){
+      return Math.acos(pos.y/ rho);
+   }
+   
+   geometric3dShapes.prototype.theta = function(pos){
+      var s = this.s(pos)
+      var ret = 0;
+      if(0 <= pos.x){
+         ret = Math.asin(pos.z/ s);
+      }else{
+         ret = Math.PI - Math.asin(pos.z/ s);
+      }
+      return ret;
+    }
+    
+   geometric3dShapes.prototype.s = function(pos){
+     var r = Math.sqrt(Math.pow(pos.x,2) + Math.pow(pos.z,2));
+     return r;
+   }
+   
+ geometric3dShapes.prototype.getCartesian = function(phi, theta, p){
+   var targetPosition =  new THREE.Vector3(0, 0, 0);
+   targetPosition.x = p * Math.sin( phi ) * Math.cos( theta );
+   targetPosition.y = p * Math.cos( phi );
+   targetPosition.z = p * Math.sin( phi ) * Math.sin( theta );
+   return targetPosition;
+}
     
     
   

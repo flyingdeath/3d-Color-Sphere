@@ -46,6 +46,10 @@ function sceneControllerClass(options){
     return dims;
   }
   
+  sceneControllerClass.prototype.getDimsP = function(){
+    return this.dims;
+  }
+  
   sceneControllerClass.prototype.createRenderer = function(){
     var renderer = new THREE.WebGLRenderer( { clearColor: 0xaaccff, clearAlpha: 1 } );
     renderer.setClearColorHex( this.options.backgroundColor, this.options.backgroundOpacity );
@@ -63,7 +67,8 @@ function sceneControllerClass(options){
       var delta = element.renderCallBack(element);
       if(!element.cutoff){
        element.controls.update(delta);
-      }
+       }
+      element.renderer.clear();
       element.renderer.render( element.scene, element.camera );
       element.stats.update();
      })();
