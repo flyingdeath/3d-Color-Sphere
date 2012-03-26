@@ -210,7 +210,9 @@ THREE.FirstPersonControls = function ( object, domElement ) {
       if ( this.moveRight ) this.object.translateX( actualMoveSpeed );
 
       if ( this.moveUp ) this.object.translateY( actualMoveSpeed );
-      if ( this.moveDown ) this.object.translateY( - actualMoveSpeed );*/
+      if ( this.moveDown ) this.object.translateY( - actualMoveSpeed );
+      
+      */
 /*********************************************************************************************/
 // 1st.
 /*********************************************************************************************/
