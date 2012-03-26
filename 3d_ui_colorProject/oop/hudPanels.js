@@ -22,11 +22,11 @@
   }
   
   hudPanels.prototype.initialize = function(){
-    var rezStep = 20;
+    var rezStep = 200;
     this.panel1 = this.init_plain({ width:this.size, height:this.size, 
                                     sHeight:rezStep, sWidth:rezStep});
    this.panel1.position.set( this.initipos.x, this.initipos.y, this.initipos.z );
-   //this.panel1.rotation.x = Math.PI*(3/4);
+ //  this.panel1.rotation.x = Math.PI*(0.5);
    this.panel1.rotation.y = Math.PI*(0.5);
    this.scene.add(this.panel1);
     this.mapOneColor(this.panel1.geometry,new THREE.Color( 0xffffff ));
@@ -86,17 +86,35 @@
   }
   
   hudPanels.prototype.updatePosition = function(camera){
-    var pos =  owl.deepCopy(camera.getTarget());
-    pos.z += 10;
-    pos.x += 50;
-    pos.y -= 20;
+      var target =  owl.deepCopy(camera.getTarget());
+      var pos =  owl.deepCopy(camera.position);
+    var far = 10; 
+    var r = 50;
+    var offSet = 20;
+    var direction = new THREE.Vector3( target.x, target.y, target.z ).normalize();
+    var origin = new THREE.Vector3(  pos.x ,   pos.y  , pos.z );
     
-    var vector = new THREE.Vector3( pos.x, pos.y, pos.z );
-    var normalizedPosition = vector.normalize()
-    var final = vector.add(normalizedPosition,pos);
-      
-    this.changePosition(final);
-    this.changeRotation(camera.rotation)
+    if(direction.z > 0 ){
+        origin.z += far;
+    }else{
+        origin.z -= far;
+    }
+    
+    if(direction.x > 0 ){
+        origin.x += offSet;
+    }else{
+        origin.x -= offSet;
+    }
+    if(direction.y > 0 ){
+        origin.y += offSet;
+    }else{
+        origin.y -= offSet;
+    }/**/
+    
+    
+    origin = origin.sub(origin, direction);
+    this.changePosition(origin);
+    this.changeRotation(camera.rotation);
     
   }
   
@@ -113,6 +131,41 @@
    panel.rotation.y = rot.y;
    panel.rotation.z = rot.z;
   }
+  
+  hudPanels.prototype.rho = function(pos){
+    var r = Math.sqrt(Math.pow(pos.x,2) + Math.pow(pos.y,2) + Math.pow(pos.z,2));
+    return r;
+  }
+  
+  hudPanels.prototype.phi = function(pos, rho){
+     return Math.acos(pos.y/ rho);
+  }
+  
+  hudPanels.prototype.theta = function(pos){
+    var s = this.s(pos)
+    var ret = 0;
+    if(0 <= pos.x){
+       ret = Math.asin(pos.z/ s);
+    }else{
+       ret = Math.PI - Math.asin(pos.z/ s);
+    }
+    return ret;
+  }
+    
+  hudPanels.prototype.s = function(pos){
+    var r = Math.sqrt(Math.pow(pos.x,2) + Math.pow(pos.z,2));
+    return r;
+  }
+   
+  hudPanels.prototype.getCartesian = function(phi, theta, p){
+    var targetPosition =  new THREE.Vector3(0, 0, 0);
+    targetPosition.x = p * Math.sin( phi ) * Math.cos( theta );
+    targetPosition.y = p * Math.cos( phi );
+    targetPosition.z = p * Math.sin( phi ) * Math.sin( theta );
+    return targetPosition;
+  }
+    
+    
   
   
   

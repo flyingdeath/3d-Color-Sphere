@@ -45,9 +45,10 @@
   }
       
   screenDebuggerClass.prototype.createOrthogonalLines = function(s){
-    this.createLine(0xFF0000, 1, new THREE.Vector3(s,0,0));
-    this.createLine(0x00FF00, 1, new THREE.Vector3(0,s,0));
-    this.createLine(0x0000FF, 1, new THREE.Vector3(0,0,s));
+    var lines =  [this.createLine(0xFF0000, 1, new THREE.Vector3(s,0,0)),
+                  this.createLine(0x00FF00, 1, new THREE.Vector3(0,s,0)),
+                  this.createLine(0x0000FF, 1, new THREE.Vector3(0,0,s))];
+    return lines;
   }
   
   screenDebuggerClass.prototype.createLine = function(color, opacity, vector){
@@ -59,6 +60,7 @@
   
     var line = new THREE.Line( geometry, line_material, THREE.LinePieces );
     this.scene.add( line );
+    return line;
   }
   
   screenDebuggerClass.prototype.createStats = function(scene){

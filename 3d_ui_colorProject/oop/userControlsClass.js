@@ -61,7 +61,7 @@ function userControlsClass(options){
     this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
   
-  /*
+  /* 
   var camera = element.camera;
   
   
@@ -69,9 +69,9 @@ function userControlsClass(options){
     this.projector.unprojectVector( vector, camera );
   
     var ray = new THREE.Ray( camera.position, vector.subSelf( camera.position ).normalize() );
-  */
+ */
     if(this.mouseMoveCallBack){
-      this.mouseMoveCallBack(this.mouse,element);
+      this.mouseMoveCallBack(this.mouse,element);//,ray);
     }
   }
   

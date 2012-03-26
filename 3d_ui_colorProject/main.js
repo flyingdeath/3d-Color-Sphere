@@ -56,8 +56,9 @@
         
 
     var sd = new screenDebuggerClass({'scene':sceneObj.scene, 'containerId': containerId});
-  //  sd.createBaseGridStd();
-  //  sd.createOrthogonalLines(10000);
+ // sd.createBaseGridStd();
+ //  sd.createOrthogonalLines(10000);
+ // element.cameraLines = sd.createOrthogonalLines(100);
 
     element.stats      = sd.createStats();
 //    element.pointLight = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
@@ -74,7 +75,7 @@
    //100, 600, 0
     var geo = new geometric3dShapes({'scene':sceneObj.scene,initipos: new THREE.Vector3(  0, 0, 0  )});
     
-    var hud = new hudPanels({'scene':sceneObj.scene,'size':20,initipos: new THREE.Vector3(  0, 0, 0  )});
+    var hud = new hudPanels({'scene':sceneObj.scene,'size':10,initipos: new THREE.Vector3(  0, 0, 0  )});
    
 
     element.sceneObj   = sceneObj;
@@ -146,13 +147,16 @@ element.mouseMoveCallBack = sceneObj.options.mouseMoveCallBack;
   var mouseUpCallBack = function(ray,element){
       var direction = new THREE.Vector3( ray.direction.x, ray.direction.y, ray.direction.z );
     
-      var origin = ray.origin.normalize();
-      var vector = origin.add(origin, direction);
+   //   var vector = origin.sub(origin, direction);
+      var vector = direction;
+      
+      var origin =  owl.deepCopy(ray.origin).normalize();
       
       var rho = element.geo.rho(vector);
       var phi = element.geo.phi(vector, rho);
       var theta = element.geo.theta(vector);
       var point = element.geo.getCartesian(phi,theta, rho * 200);
+      point = origin.sub(point, origin);
       var color = element.geo.calculateColor(point) 
          element.hud.changeColorOfPanel(color);
          element.hud.updatePosition(element.camera);
