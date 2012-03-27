@@ -31,7 +31,7 @@
     
     var controls = userControlObj.createControls(sceneObj.camera, 
                                                   {conType:'firstPerson',
-                                                   lookSpeed: 0.095,
+                                                   lookSpeed: 0.045,
                                                    movementSpeed:60.0, 
                                                    rotateSpeed: 1.0,
                                                    zoomSpeed: 1.2,
