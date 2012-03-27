@@ -90,7 +90,7 @@
     //element.wp       = wp;
     element.geo        = geo;
     element.hud        = hud;
-    element.hudHTML        = hudHTML;
+    element.hudHTML    = hudHTML;
       element.d = (new debugClass({createNode:1, nodeId: 'test2'}))
     element.containerId = containerId;
     element.renderCallBack = sceneObj.options.renderCallBack;
@@ -163,8 +163,11 @@ element.mouseMoveCallBack = sceneObj.options.mouseMoveCallBack;
       var point = element.geo.getCartesian(phi,theta, rho * 200);
       point = origin.sub(point, origin);
       var color = element.geo.calculateColor(point) 
-         element.hud.changeColorOfPanel(color);
-         element.hud.updatePosition(element.camera);
+      
+      element.hud.changeColorOfPanel(color);
+      element.hud.updatePosition(element.camera);
+      element.hudHTML.updateXColor(color);
+      
   }
   
   

@@ -60,6 +60,114 @@
       var eventObj ={};
      // this.redrawColorWheel(eventObj);
   }
+
+  hudClass.prototype.updateXColor = function(color){ 
+
+    var SystemType = document.getElementById('SystemType_XColor');
+    var valueType = SystemType.value;
+    SystemType = null;
+    var ret;
+    switch(valueType){ 
+      case 'Monochromatic': 
+        ret = tinycolor.triad(color);
+        break;
+      case 'Complementary': 
+        ret = tinycolor.complement(color);
+        break;
+      case 'Split-Complementary': 
+        ret = tinycolor.splitcomplement(color);
+        break;
+      case 'Analogous': 
+        ret = tinycolor.analogous(color);
+        break;
+      case 'Triad': 
+        ret = tinycolor.triad(color);
+        break;
+      case 'Tetrad': 
+        ret = tinycolor.tetrad(color);
+        break;
+    }
+    if(ret){
+      this.output(this.outputXColor(ret));
+    }else{
+      this.output(this.getColorUnit(new tinycolor(color).toHexString()));
+    }
+  }
   
+  hudClass.prototype.outputXColor = function(set){ 
+    var value = document.getElementById('value_valueBox');
+    var v = parseInt(value.value);
+    value = null;
+    var range = 100;
+    var step = 10/(v*0.1);
+    var newSet, ret = "";
+    
+    if(v > 0){
+      for(var i = 0;i<range;i += step){
+        newSet =  owl.deepCopy(set);
+        for(var x = 0;x<newSet.length;x++){
+          temp = newSet[x].toHsv()
+          temp.v = i
+          newSet[x] = new tinycolor(temp)
+        }
+        ret += this.outputXColorSet(newSet);
+      }
+    }
+    return ret;
+  }
+  
+  hudClass.prototype.outputXColorSet = function(set){ 
+    var ret = "";
+    for(var i = 0;i < set.length;i++){
+      ret += this.getColorUnit(set[i].toHexString());
+    }
+    return ret;
+  }
+ 
+ hudClass.prototype.getColorUnit = function(colorStr){  
+    return '<div class="colorUnit"><div style="background-color:'+colorStr+';"class="color">'+
+            '</div><div>'+colorStr+'</div></div>&nbsp;';
+  }
+
+  hudClass.prototype.appendOutput = function(text){  
+      var output = document.getElementById('output');
+      var oText =  output.innerHTML ;
+      this.deleteDomElement(output);
+      output = null;
+      this.updateInnerHtml('output', oText+text);
+  }
+
+  hudClass.prototype.output = function(text){  
+    this.updateInnerHtml('output', text);
+  }
+
+  hudClass.prototype.updateInnerHtml = function(updateId, newHTML){
+      var domRef = document.getElementById(updateId);
+      if(domRef){
+        this.removeChildren(updateId);
+        domRef.innerHTML = newHTML;
+      }
+      this.deleteDomElement(domRef);
+      domRef = null;
+   }
+
+  hudClass.prototype.deleteDomElement = function(ref){
+    var a = [ref];
+    delete a[0];
+    ref = null;
+    a = null;
+  }
+
+  hudClass.prototype.removeChildren = function(id){
+     var domObj = document.getElementById(id);
+     var childrenLength = domObj.childNodes.length;
+     for(var i = childrenLength;i>0;i--){
+        domObj.removeChild(domObj.childNodes[0]);
+        delete domObj.childNodes[0];
+     }
+     this.deleteDomElement(domObj);
+     domObj = null;
+  }
+
   
   

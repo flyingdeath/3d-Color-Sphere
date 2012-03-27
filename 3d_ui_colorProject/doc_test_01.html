@@ -142,10 +142,7 @@
     <script type="text/javascript" src="three_js/examples/js/Stats.js"></script>
 
     <script type="text/javascript" src="lib/deepCopy.js"></script>
-
-    <script type="text/javascript" src="lib/shaders/ocean_vert.js"></script>
-    <script type="text/javascript" src="lib/shaders/ocean_frag.js"></script>
-
+    <script type="text/javascript" src="lib/tinycolor.js"></script>
     <script type="text/javascript" src="oop/lightControllerClass.js"></script>
     <script type="text/javascript" src="oop/modelLoaderClass.js"></script>
     <script type="text/javascript" src="oop/screenDebuggerClass.js"></script>
@@ -274,7 +271,19 @@
 		  <div id="controls">
 			<div id="ScaleContainer">
 				<br/>
-				Type:&nbsp;&nbsp;&nbsp;<select id="SystemType">
+				Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				<select id="SystemType_XColor">
+						<option value="Monochromatic">Monochromatic</option>
+						<option value="Complementary">Complementary</option>
+						<option value="Split-Complementary">Split-Complementary</option>
+						<option value="Analogous">Analogous</option>
+						<option value="Triad">Triad</option>
+						<option value="Tetrad">Tetrad</option>
+						<option value="Geometric">Geometric</option>
+					</select><br/>
+				Geometric Type:&nbsp;&nbsp;&nbsp;<select id="SystemType">
 						<option value="Complementary">Complementary</option>
 						<option value="Analogous">Analogous</option>
 						<option value="Triadic">Triadic</option>
