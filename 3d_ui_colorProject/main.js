@@ -14,11 +14,13 @@
     var sceneObj = new sceneControllerClass({'containerId':containerId, 
                                              options: {backgroundColor: 0xffffff,
                                                        backgroundOpacity: 1, 
-                                                       percentageOffSet: [5,17],
+                                                       percentageOffSet: [0,0],
+                                                       viewAngle:(45)* (180/Math.PI) ,
                                                        cameraCtype:'perspective',
                                                        near: 1, far: 1000000,
                                                        renderCallBack:renderCallBack}
                                              });
+                                                      // dims: [1000,625],
                                              
     var userControlObj = new userControlsClass({'element': element, 
                                                 'containerId': containerId,
@@ -42,7 +44,7 @@
                                                    maxDistance: controlRadius * 100,
                                                    keys: [ 65, 83, 68 ], // [ rotateKey, zoomKey, panKey ]
                                                    initPos:       new THREE.Vector3(0,0,0),
-                                                   initLookAtPos: new THREE.Vector3(2,10,2)
+                                                   initLookAtPos: new THREE.Vector3(1,0,1)
                                                  //  initPos:       new THREE.Vector3(752,431,-48),
                                                  //  initLookAtPos: new THREE.Vector3(653,445,-44)
                                                   },sceneObj.renderer);
@@ -73,9 +75,11 @@
   
    element.pointLight4.intensity = i;
    //100, 600, 0
-    var geo = new geometric3dShapes({'scene':sceneObj.scene,initipos: new THREE.Vector3(  0, 0, 0  )});
+    var geo = new geometric3dShapes({'scene':sceneObj.scene, size: 200,initipos: new THREE.Vector3(  0, 0, 0  )});
     
+   
     var hud = new hudPanels({'scene':sceneObj.scene,'size':10,initipos: new THREE.Vector3(  0, 0, 0  )});
+    var  hudHTML = new hudClass({'scene':sceneObj, radius: 200, hudId: 'htmlHud', heightOffset:75, outputId: 'output',offSet: 520 });
    
 
     element.sceneObj   = sceneObj;
@@ -86,6 +90,7 @@
     //element.wp       = wp;
     element.geo        = geo;
     element.hud        = hud;
+    element.hudHTML        = hudHTML;
       element.d = (new debugClass({createNode:1, nodeId: 'test2'}))
     element.containerId = containerId;
     element.renderCallBack = sceneObj.options.renderCallBack;

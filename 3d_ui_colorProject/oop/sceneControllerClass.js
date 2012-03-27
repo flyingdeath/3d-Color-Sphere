@@ -23,11 +23,16 @@ function sceneControllerClass(options){
   
                    
     this.scene     = new THREE.Scene();
-    this.dims      = this.getDims();
+    if(this.options.dims){
+      this.dims      = this.options.dims;
+    }else{
+      this.dims      = this.getDims();
+    }
     this.renderer  = this.createRenderer();
     this.camera    = this.createCamera({cType: this.options.cameraCtype, 
                                         near: this.options.near, 
                                         far: this.options.far, 
+                                        viewAngle: this.options.viewAngle,
                                         dims: this.dims});
   }
   

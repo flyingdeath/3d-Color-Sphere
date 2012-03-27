@@ -2,10 +2,8 @@
     try{
       this.elements = {};
       this.h = new helperClass();
-      this.d = (new debugClass({createNode:1, nodeId: 'test2'}))
       this.initializeOptions(options);
       this.initialize();
-      this.time = 0;
     }catch(err){
       debugger;
     }
@@ -88,9 +86,9 @@
   hudPanels.prototype.updatePosition = function(camera){
       var target =  owl.deepCopy(camera.getTarget());
       var pos =  owl.deepCopy(camera.position);
-    var far = 10; 
+    var far = 30; 
     var r = 50;
-    var offSet = 20;
+    var offSet = 30;
     var direction = new THREE.Vector3( target.x, target.y, target.z ).normalize();
     var origin = new THREE.Vector3(  pos.x ,   pos.y  , pos.z );
     

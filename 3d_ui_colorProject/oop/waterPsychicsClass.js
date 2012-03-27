@@ -2,7 +2,7 @@
     try{
       this.elements = {};
     //  this.h = new helperClass();
- this.d = (new debugClass({createNode:1}))
+// this.d = (new debugClass({createNode:1}))
       this.initializeOptions(options);
       this.initialize();
       this.time = 0;

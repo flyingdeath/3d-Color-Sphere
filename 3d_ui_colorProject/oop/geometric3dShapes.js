@@ -3,7 +3,7 @@
       this.elements = {};
       this.h = new helperClass();
       this.initializeOptions(options);
-      this.size = 200;
+      //this.size = 200;
       this.initialize();
       this.time = 0;
     }catch(err){

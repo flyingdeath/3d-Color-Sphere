@@ -149,20 +149,20 @@ function userControlsClass(options){
     
      switch(options.conType){
        case 'firstPerson':
-         controls = new THREE.FirstPersonControls(camera);
+         controls = new THREE.FirstPersonControls(camera, ren.domElement);
          break;
        case 'trackball':                  
          controls = new THREE.TrackballControls(camera, ren.domElement);  
          break;
        case 'roll':                     
-         controls = new THREE.RollControls(camera);   
+         controls = new THREE.RollControls(camera, ren.domElement);   
          break;
        case 'path':                  
-         controls = new THREE.PathControls( camera );
+         controls = new THREE.PathControls( camera , ren.domElement);
          controls.init();
          break;
        case 'fly':                   
-         controls = new THREE.FlyControls(camera);       
+         controls = new THREE.FlyControls(camera, ren.domElement);       
          break;
      }
      
