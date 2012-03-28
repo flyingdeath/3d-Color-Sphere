@@ -20,48 +20,16 @@
   }
   
   hudClass.prototype.initialize = function(){
-    this.createSlider('width',[1,this.radius*2],1,this.radius);
-    this.createSlider('height',[1,this.radius*2],1,this.radius);
-    this.createSlider('size',[1,this.radius*2],1,this.radius);
-    this.createSlider('value',[1,50],1,10);
+    this.ui.createSlider('width',[1,this.radius*2],1,this.radius);
+    this.ui.createSlider('height',[1,this.radius*2],1,this.radius);
+    this.ui.createSlider('size',[1,this.radius*2],1,this.radius);
+    this.ui.createSlider('value',[1,50],1,10);
     var dims = this.scene.getDimsP();
     YAHOO.util.Dom.setStyle(this.outputId,'width', dims[0] - this.offSet + 'px');
     YAHOO.util.Dom.setStyle(this.hudId,'top', dims[1]*(this.heightOffset/100)  + 'px');
   }
-  
-  hudClass.prototype.createSlider = function(name, dRange,dTickSize, initValue){
-    var slider = YAHOO.widget.Slider.getHorizSlider(name + "_bg",
-                                                    name + "_thumb", 
-                                                    dRange[0], 
-                                                    dRange[1], 
-                                                    dTickSize);
-    if(initValue){
-      slider.setValue(initValue, true, true, true);
-    }
-    
-    var paramSet = {instanceObj:this,'element':{'name':      name,
-                                                'dRange':    dRange,
-                                                'dTickSize': dTickSize,
-                                                'initValue': initValue}};
-                                                
-    slider.subscribe('change', this.report, paramSet);
-    return slider;
-    
-  }
-  
-  hudClass.prototype.report = function(sliderObj, paramSet){
-    paramSet.instanceObj.report_p(this,sliderObj,paramSet.element);
-  }
-        
-  hudClass.prototype.report_p = function(obj, value, element){
-      var valueBox = document.getElementById(element.name + "_valueBox");
-      valueBox.value = value;
-      valueBox = null;
-      var eventObj ={};
-     // this.redrawColorWheel(eventObj);
-  }
 
-  hudClass.prototype.updateXColor = function(color){ 
+  hudClass.prototype.updateXColor = function(color, polyColors){ 
 
     var SystemType = document.getElementById('SystemType_XColor');
     var valueType = SystemType.value;
@@ -90,7 +58,7 @@
     if(ret){
       this.output(this.outputXColor(ret));
     }else{
-      this.output(this.getColorUnit(new tinycolor(color).toHexString()));
+      this.output(this.outputXColor(polyColors));
     }
   }
   
@@ -106,7 +74,7 @@
       for(var i = 0;i<range;i += step){
         newSet =  owl.deepCopy(set);
         for(var x = 0;x<newSet.length;x++){
-          temp = newSet[x].toHsv()
+          temp = new tinycolor(newSet[x]).toHsv()
           temp.v = i
           newSet[x] = new tinycolor(temp)
         }

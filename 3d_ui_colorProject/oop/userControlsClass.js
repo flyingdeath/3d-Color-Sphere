@@ -7,7 +7,6 @@ function userControlsClass(options){
       this.keyActions = {};
       
       this.projector = new THREE.Projector();
-      this.d = new debugClass({createNode:1})
     }catch(err){
       debugger;
     }
@@ -135,12 +134,46 @@ function userControlsClass(options){
     if(direction == 'up'){
       amount *= -1;
     }
-    element.current = element.current + amount;
+    element.current = amount;
+    if(this.mousewheelCallBack){
+      this.mousewheelCallBack(element);
+    }
     
-   // element.pointLight.position.z = element.current;
+  }
+  
+  userControlsClass.prototype.createSlider = function(name, dRange,dTickSize, initValue){
+    var slider = YAHOO.widget.Slider.getHorizSlider(name + "_bg",
+                                                    name + "_thumb", 
+                                                    dRange[0], 
+                                                    dRange[1], 
+                                                    dTickSize);
+    if(initValue){
+      slider.setValue(initValue, true, true, true);
+    }
     
-    this.d.output(element.current);
+    var paramSet = {instanceObj:this,'element':{'name':      name,
+                                                'dRange':    dRange,
+                                                'dTickSize': dTickSize,
+                                                'initValue': initValue},
+                                      el:this.element};
+                                                
+    slider.subscribe('change', this.report, paramSet);
+    return slider;
     
+  }
+  
+  userControlsClass.prototype.report = function(sliderObj, paramSet){
+    paramSet.instanceObj.report_p(this,sliderObj,paramSet.element,paramSet.el);
+  }
+        
+  userControlsClass.prototype.report_p = function(obj, value, element,el){
+    var valueBox = document.getElementById(element.name + "_valueBox");
+    valueBox.value = value;
+    valueBox = null;
+    var eventObj ={};
+    if(this.sliderCallBack){
+      this.sliderCallBack(el,eventObj);
+    }
   }
       
     

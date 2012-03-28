@@ -44,7 +44,7 @@
     
     //this.mapPlain(inside,shape, -1);
     
-  this.scene.add(this.inside);
+   this.scene.add(this.inside);
    this.scene.add(this.outside);
  //  this.scene.add(shape);
     
@@ -138,6 +138,22 @@
     return p;
   }
   
+  geometric3dShapes.prototype.getColorOfVertices = function(mesh){
+    return this.getColorOfVertices_p(mesh.geometry,1);
+  }
+  
+  geometric3dShapes.prototype.getColorOfVertices_p = function(geometry, scaler){
+    var colors = []
+    var len = geometry.vertices.length;
+    var faceIndices = [ 'a', 'b', 'c', 'd' ];
+    var color, f, p, n, vertexIndex;
+    for ( var i = 0; i < geometry.vertices.length; i ++ ) {
+     p = geometry.vertices[ i ].position;
+     colors.push(this.calculateColor_p(p, scaler, 0));
+    }
+    return colors;
+  }
+  
   
   
   
@@ -149,39 +165,34 @@
       var value = this.scaleColor(pos.y,scaler, this.size);
       var color = new THREE.Color( 0xffffff );
       var color2d = this.postionColor(this.size, [pos.x + rawDiff,
-                                                  pos.z + rawDiff]);
-      var phi = this.phi(pos, this.rho(pos));
-      var theta = this.theta(pos);                    
+                                                  pos.z + rawDiff]);         
       color.setHSV(color2d[0],color2d[1] ,value );
       return color;
     }
 
  
- geometric3dShapes.prototype.postionColor = function(radius,point) {
-   var currentX =  point[0];
-   var currentY =  point[1];
-    
-    var theta    = Math.atan2(currentY, currentX);
-    var d      = currentX * currentX + currentY * currentY;
+  geometric3dShapes.prototype.postionColor = function(radius,point) {
+    var currentX =  point[0];
+    var currentY =  point[1];
+     
+    var theta = Math.atan2(currentY, currentX);
+    var d     = (currentX * currentX) + 
+                (currentY * currentY);
          
-    if (d > this.radiusSquared) {
+    if (d > (radius*radius)) {
        currentX = radius * Math.cos(theta);
        currentY = radius * Math.sin(theta);
-       theta = Math.atan2(currentY, currentX);
-       d = currentX * currentX + currentY * currentY;
+       theta    = Math.atan2(currentY, currentX);
+       d        = (currentX * currentX) + 
+                  (currentY * currentY);
     } 
-    return [(theta + Math.PI) / (Math.PI * 2), 
-            Math.sqrt(d) / radius];
-  }
-     
-  
-  geometric3dShapes.prototype.scaleColorSphere_old = function(v,scaler,size){
-    var ret = (-1*scaler*v+ size)/(size*2);
-    if(isNaN(parseInt(ret))){ 
-      ret = 1.0;
-    }else if((ret >= 1.0 || ret <= 0)){
-      ret = 1.0
-    }
+    
+    var ret = [
+                (theta + Math.PI) / 
+                (2     * Math.PI), 
+                Math.sqrt(d) / 
+                radius
+              ];
     return ret;
   }
   

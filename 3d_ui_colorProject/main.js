@@ -24,6 +24,8 @@
                                              
     var userControlObj = new userControlsClass({'element': element, 
                                                 'containerId': containerId,
+                                                'sliderCallBack': sliderCallBack,
+                                                'mousewheelCallBack':mousewheelCallBack,
                                                 'mouseDownCallBack':mouseDownCallBack,
                                                 'mouseMoveCallBack':mouseMoveCallBack,
                                                 'mouseUpCallBack':mouseUpCallBack });
@@ -76,10 +78,13 @@
    element.pointLight4.intensity = i;
    //100, 600, 0
     var geo = new geometric3dShapes({'scene':sceneObj.scene, size: 200,initipos: new THREE.Vector3(  0, 0, 0  )});
+    var poly = new polygonalPoints({'scene':sceneObj.scene, options: { bg: 0x000000 , o:1 }});
     
    
-    var hud = new hudPanels({'scene':sceneObj.scene,'size':10,initipos: new THREE.Vector3(  0, 0, 0  )});
-    var  hudHTML = new hudClass({'scene':sceneObj, radius: 200, hudId: 'htmlHud', heightOffset:75, outputId: 'output',offSet: 520 });
+    var hud      = new hudPanels({'scene':sceneObj.scene,'size':10,initipos: new THREE.Vector3(  0, 0, 0  )});
+    var hudHTML  = new hudClass({'scene':sceneObj, radius: 200, hudId: 'htmlHud', 
+                                  heightOffset:75, outputId: 'output',offSet: 520,
+                                  ui:userControlObj});
    
 
     element.sceneObj   = sceneObj;
@@ -89,16 +94,13 @@
     element.controls   = controls;
     //element.wp       = wp;
     element.geo        = geo;
+    element.poly        = poly;
     element.hud        = hud;
     element.hudHTML    = hudHTML;
-      element.d = (new debugClass({createNode:1, nodeId: 'test2'}))
+    element.d          = (new debugClass({createNode:1, nodeId: 'test2'}))
     element.containerId = containerId;
     element.renderCallBack = sceneObj.options.renderCallBack;
-/*
-element.mouseMoveCallBack = sceneObj.options.mouseMoveCallBack;
-    element.mouseDownCallBack = sceneObj.options.mouseDownCallBack;
-    element.mouseUpCallBack = sceneObj.options.mouseUpCallBack;
-  */
+    
     userControlObj.regKeyAction('DOM_VK_M', function(eventObj){
       var pos = owl.deepCopy(modelObj.getModelPosition(film_case));
      // pos.y = -1*pos.y
@@ -166,9 +168,26 @@ element.mouseMoveCallBack = sceneObj.options.mouseMoveCallBack;
       
       element.hud.changeColorOfPanel(color);
       element.hud.updatePosition(element.camera);
-      element.hudHTML.updateXColor(color);
-      
+      var polyColors = element.geo.getColorOfVertices(
+                          element.poly.update([point.x,point.z,point.y], 
+                           Math.PI*(3/4) + theta ));
+      element.hudHTML.updateXColor(color, polyColors);
   }
+  var mousewheelCallBack = function(element){
+      var polyColors = element.geo.getColorOfVertices(
+                          element.poly.update(null, null, element.current));
+      element.hudHTML.updateXColor(null, polyColors);
+  }
+  var sliderCallBack = function(element,eventObj){
+      var polyColors = element.geo.getColorOfVertices(
+                          element.poly.update());
+      element.hudHTML.updateXColor(null, polyColors);
+  }
+  
+  
+  
+  
+  
   
   
   
