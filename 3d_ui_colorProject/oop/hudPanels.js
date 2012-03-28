@@ -20,7 +20,7 @@
   }
   
   hudPanels.prototype.initialize = function(){
-    var rezStep = 200;
+    var rezStep = 1;
     this.panel1 = this.init_plain({ width:this.size, height:this.size, 
                                     sHeight:rezStep, sWidth:rezStep});
    this.panel1.position.set( this.initipos.x, this.initipos.y, this.initipos.z );

@@ -22,7 +22,7 @@
   }
   
   geometric3dShapes.prototype.initialize = function(){
-    var rezStep = 200;
+    var rezStep = 20;
     var shapeType = 'sphere'
     var shape =  this.init_model_shape(shapeType, rezStep);
     
