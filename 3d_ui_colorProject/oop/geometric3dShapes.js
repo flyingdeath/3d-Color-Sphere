@@ -139,7 +139,11 @@
   }
   
   geometric3dShapes.prototype.getColorOfVertices = function(mesh){
-    return this.getColorOfVertices_p(mesh.geometry,1);
+    if(mesh){
+      return this.getColorOfVertices_p(mesh.geometry,1);
+    }else{
+      return null;
+    }
   }
   
   geometric3dShapes.prototype.getColorOfVertices_p = function(geometry, scaler){
