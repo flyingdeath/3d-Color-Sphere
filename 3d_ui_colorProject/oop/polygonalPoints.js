@@ -97,7 +97,7 @@
     points[2][0] += size;
     points[2] = this.rotate(amount* Math.PI / 180, points[2] , points[0]);
 
-    this.drawPolygon(points, pos, false);
+    this.drawPolygon(points, pos, false, false,THREE.LineStrip );
   }
 
   polygonalPoints.prototype.drawPolygonal_new = function(pos, size){ 
@@ -191,7 +191,7 @@
     this.drawPolygon(points, pos, true);
   }
 
-  polygonalPoints.prototype.drawPolygon = function(points, pos, closePath, dontrotate){ 
+  polygonalPoints.prototype.drawPolygon = function(points, pos, closePath, dontrotate, LineType){ 
     var line_material = new THREE.LineBasicMaterial( { color: this.options.bg , opacity:this.options.o  } );
     var geometry      = new THREE.Geometry();
     
@@ -212,15 +212,16 @@
     if(this.polygon){
       this.scene.remove(this.polygon);
     }
-    var LineType;
-    if(closePath){
-      LineType = THREE.LineStrip;
-    }else{
-       LineType = THREE.LinePieces;
+    if(LineType == undefined){
+      if(closePath){
+        LineType = THREE.LineStrip;
+      }else{
+         LineType = THREE.LinePieces;
+      }
     }
     
     
-    this.polygon = new THREE.Line( geometry, line_material,LineType );
+    this.polygon = new THREE.Line( geometry, line_material,LineType);
     this.scene.add(this.polygon);
   }
   
