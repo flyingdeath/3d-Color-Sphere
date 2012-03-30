@@ -75,7 +75,9 @@ function sceneControllerClass(options){
        }
       element.renderer.clear();
       element.renderer.render( element.scene, element.camera );
-      element.stats.update();
+      if(element.stats){
+        element.stats.update();
+      }
      })();
    }
    

@@ -6,7 +6,7 @@
 
 THREE.FirstPersonControls = function ( object, domElement ) {
   this.object = object;
-  this.d = (new debugClass({createNode:1, nodeId: 'test1'}))
+  //this.d = (new debugClass({createNode:1, nodeId: 'test1'}))
   this.target = new THREE.Vector3( 0, 0, 0 );
 
   this.domElement = ( domElement !== undefined ) ? domElement : document;
@@ -278,14 +278,14 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 /*********************************************************************************************/
       
       this.object.lookAt( targetPosition );
-      
+      /*
      this.d.output("("+  targetPosition.x + ","+ 
                          targetPosition.y + ","+ 
                          targetPosition.z + "),<br/>" +
                    "("+  camPos.x + ","+ 
                          camPos.y + ","+ 
                          camPos.z + "),<br/>");
-      
+      */
       
        this.ext_update = false;
 /*********************************************************************************************/

@@ -25,8 +25,8 @@
     this.ui.createSlider('size',[1,this.radius*2],1,this.radius);
     this.ui.createSlider('value',[1,50],1,10);
     var dims = this.scene.getDimsP();
-    YAHOO.util.Dom.setStyle(this.outputId,'width', dims[0] - this.offSet + 'px');
-    YAHOO.util.Dom.setStyle(this.hudId,'top', dims[1]*(this.heightOffset/100)  + 'px');
+  //  YAHOO.util.Dom.setStyle(this.outputId,'width', dims[0] - this.offSet + 'px');
+ //   YAHOO.util.Dom.setStyle(this.hudId,'top', dims[1]*(this.heightOffset/100)  + 'px');
   }
 
   hudClass.prototype.updateXColor = function(color, polyColors){ 
@@ -63,6 +63,9 @@
   }
   
   hudClass.prototype.outputGraph = function(set){ 
+    var output_text = document.getElementById('output_text');
+    output_text.value = this.getStaticColorSet(set).join(' ');
+    output_text = null;
     var SystemType = document.getElementById('GraphType');
     var valueType = SystemType.value;
     SystemType = null;
@@ -84,28 +87,13 @@
         ret = this.createColorPattern2(set);
         break;
       case 'Pattern3': 
-        ret = this.createColorPattern1(set);
+        ret = this.createColorPattern3(set);
         break;
       case 'Pattern4': 
-        ret = this.createColorPattern1(set);
+        ret = this.createColorPattern4(set);
         break;
       case 'Pattern5': 
-        ret = this.createColorPattern1(set);
-        break;
-      case 'Pattern6': 
-        ret = this.createColorPattern1(set);
-        break;
-      case 'Pattern7': 
-        ret = this.createColorPattern1(set);
-        break;
-      case 'Pattern8': 
-        ret = this.createColorPattern1(set);
-        break;
-      case 'Pattern9': 
-        ret = this.createColorPattern1(set);
-        break;
-      case 'Pattern10': 
-        ret = this.createColorPattern1(set);
+        ret = this.createColorPattern5(set);
         break;
     }
     return ret;
@@ -184,6 +172,48 @@
     }
     return ret;
   }
+  
+ hudClass.prototype.createColorPattern5 = function(set){
+  return this.getColorPattern5(this.getStaticColorSet(set));
+ }
+ 
+ hudClass.prototype.getColorPattern5 = function(colors){  
+   return '<div class="Pattern5">'+
+              '<div class="box1">'+this.getColorDiv('#000000') +'</div>'+
+              '<div class="box2">'+this.getColorDiv(colors[0]) +'</div>'+
+              '<div class="box3">'+this.getColorDiv(colors[1]) +'</div>'+
+              '<div class="box4">'+this.getColorDiv(colors[2]) +'</div>'+
+              '<div class="box5">'+this.getColorDiv(colors[3]) +'</div>'+
+            '</div>';   
+ }
+  
+ hudClass.prototype.createColorPattern4 = function(set){
+  return this.getColorPattern4(this.getStaticColorSet(set));
+ }
+ 
+ hudClass.prototype.getColorPattern4 = function(colors){  
+   return '<div class="Pattern4">'+
+              '<div class="bar">'+this.getColorDiv('#000000', true) +'</div>'+
+              '<div class="bar">'+this.getColorDiv(colors[0], true) +'</div>'+
+              '<div class="bar">'+this.getColorDiv(colors[1], true) +'</div>'+
+              '<div class="bar">'+this.getColorDiv(colors[2], true) +'</div>'+
+              '<div class="bar">'+this.getColorDiv(colors[3], true) +'</div>'+
+            '</div>';   
+ }
+  
+ hudClass.prototype.createColorPattern3 = function(set){
+  return this.getColorPattern3(this.getStaticColorSet(set));
+ }
+ 
+ hudClass.prototype.getColorPattern3 = function(colors){  
+   return '<div class="Pattern3">'+
+              '<div class="tl">'+this.getColorDiv('#000000', true) +'</div>'+
+              '<div class="tr">'+this.getColorDiv(colors[0], true) +'</div>'+
+              '<div class="c">'+this.getColorDiv(colors[1], true) +'</div>'+
+              '<div class="bl">'+this.getColorDiv(colors[2], true) +'</div>'+
+              '<div class="br">'+this.getColorDiv(colors[3], true) +'</div>'+
+            '</div>';   
+ }
  
  hudClass.prototype.createColorPattern2 = function(set){
   return this.getColorPattern2(this.getStaticColorSet(set));

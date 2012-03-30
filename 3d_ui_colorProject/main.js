@@ -59,12 +59,12 @@
    
         
 
-    var sd = new screenDebuggerClass({'scene':sceneObj.scene, 'containerId': containerId});
+  //  var sd = new screenDebuggerClass({'scene':sceneObj.scene, 'containerId': containerId});
  // sd.createBaseGridStd();
  //  sd.createOrthogonalLines(10000);
  // element.cameraLines = sd.createOrthogonalLines(100);
 
-    element.stats      = sd.createStats();
+    //element.stats      = sd.createStats();
 //    element.pointLight = new lightControllerClass({'scene':sceneObj.scene}).createPiontLight({ bg: 0xffffff, o:0.75,
 //                                                                                               x:300,y:300,z:0});
                                                                                                
@@ -83,7 +83,7 @@
    
     var hud      = new hudPanels({'scene':sceneObj.scene,'size':10,initipos: new THREE.Vector3(  0, 0, 0  )});
     var hudHTML  = new hudClass({'scene':sceneObj, radius: 200, hudId: 'htmlHud', 
-                                  heightOffset:70, outputId: 'output',offSet: 520,
+                                  heightOffset:7, outputId: 'output',offSet: 520,
                                   ui:userControlObj});
    
 

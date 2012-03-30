@@ -5,7 +5,7 @@
     this.theta = 0;
     this.dontrotate = null;
     this.storedPoints = [];
-    this.d = new debugClass({createNode:1})
+//    this.d = new debugClass({createNode:1})
 
   }
 
@@ -37,7 +37,7 @@
     if(amount && valueType !== 'Polygonal'){
       this.theta +=  amount* Math.PI / 180 ;
     }
-    this.d.output(this.theta * (180/Math.PI) )
+ //   this.d.output(this.theta * (180/Math.PI) )
     
     
     if(pos){
