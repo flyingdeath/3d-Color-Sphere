@@ -83,7 +83,7 @@
    
     var hud      = new hudPanels({'scene':sceneObj.scene,'size':10,initipos: new THREE.Vector3(  0, 0, 0  )});
     var hudHTML  = new hudClass({'scene':sceneObj, radius: 200, hudId: 'htmlHud', 
-                                  heightOffset:75, outputId: 'output',offSet: 520,
+                                  heightOffset:70, outputId: 'output',offSet: 520,
                                   ui:userControlObj});
    
 

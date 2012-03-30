@@ -1,0 +1,183 @@
+
+      body {
+        color: #000;
+      font:13px/1.231 arial,helvetica,clean,sans-serif;
+        padding: 30px;
+        overflow: hidden;
+      }
+      #container{
+        overflow:visable;
+      top: 5%;
+      left: 5%;
+      }
+
+      #info {
+      color:#000;
+      position: absolute;
+      top: 0px; width: 100%;
+      padding: 5px;
+
+      }
+      #controlsInfo{
+        display:none;
+      }
+    .color{
+      width:50px;
+      height:50px;
+    }
+    .colorUnit{
+      display:inline-block;
+    }
+    body{
+      background-color:black;
+      color:white;
+    }
+    select{
+      background-color:black;
+      color:white;
+    }
+    #output{
+      position: relative;
+      z-index:1;
+      overflow:auto;
+      height:300px;
+      width:25%;
+       background-color:rgba(34,34,34,0.85);
+       border-radius: 10px;
+        display:inline-block;
+    }
+    body {
+      margin:0;
+      padding:0;
+    }
+    .pageSlider{
+      display:inline-block;
+      position: relative;
+      background:url(Silder_assets/bg-h-l.gif) repeat 5px 0;
+      height: 28px;
+      width: 380px;
+    }
+
+    #value_bg{
+      width: 50px;
+
+    }
+    #controls{
+      position: relative;
+      z-index:100;
+      width:480px;
+     background-color:rgba(34,34,34,0.85);
+     border-radius: 10px;
+     display: inline-block;
+     padding:10px;
+    top:-60px;
+
+    }
+    #container{
+      display:inline-block;
+      position: absolute;
+      top:0px;
+      left:0px;
+      z-index:-1;
+    }
+
+    #ScaleContainer{
+      display:inline-block;
+      position: relative;
+
+    }
+
+    input{
+      width:3em;
+      display:inline-block;
+    }
+    #htmlHud{
+      position: absolute;
+    }
+
+    #test1{
+      position: absolute;
+      bottom:0%;
+    }
+    #debugNode{
+      position: absolute;
+      bottom:50px;
+
+    }
+    .Pattern1{
+      position: relative;
+      width:400px;
+    height:400px;
+    }
+    .Pattern1 div{
+    /*display:inline-block;*/
+    }
+    .row{
+      display: inline-block;;
+      }
+    .Pattern1 .Left1,
+    .Pattern1 .Left2,
+    .Pattern1 .Left3,
+    .Pattern1 .Left4
+    {
+      float:left;
+      width:50px;
+    height:50px;
+
+    }
+
+
+    .Pattern1 .Mid1,
+    .Pattern1 .Mid2,
+    .Pattern1 .Mid3,
+    .Pattern1 .Mid4
+    {
+      float:left;
+      width:300px;
+    height:100px;
+    }
+
+    .Pattern1 .Right1,
+    .Pattern1 .Right2,
+    .Pattern1 .Right3,
+    .Pattern1 .Right4
+    {
+      float:right;
+      width:50px;
+    height:50px;
+
+    }
+
+    .Pattern2{
+      position: relative;
+      width:400px;
+    height:400px;
+    }
+    .Pattern2 .swatch{
+      width:200px;
+      height:200px;
+    }
+    
+    .Pattern2 .square div{
+      display: inline-block;
+    }
+    .centerSwatch{
+      position: absolute;
+      top:100px;
+      left:100px;
+    }
+    
+    
+    .row{
+      }
+      
+    .Pattern1 .Left1,
+    .Pattern1 .Left2,
+    .Pattern1 .Left3,
+    .Pattern1 .Left4
+    {
+      float:left;
+      width:50px;
+    height:50px;
+
+    }

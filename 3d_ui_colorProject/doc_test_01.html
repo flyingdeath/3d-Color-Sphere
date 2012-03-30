@@ -157,115 +157,9 @@
   <script type="text/javascript" src="oop/hudPanels.js"></script>
   <script type="text/javascript" src="oop/hudClass.js"></script>
     <script type="text/javascript" src="main.js"></script>
-
+<link rel="stylesheet" type="text/css" href="main.css" />
     <title>Doc test</title>
     <style>
-      body {
-        color: #000;
-      font:13px/1.231 arial,helvetica,clean,sans-serif;
-        padding: 30px;
-        overflow: hidden;
-      }
-      #container{
-        overflow:visable;
-      top: 5%;
-      left: 5%;
-      }
-
-      #info {
-      color:#000;
-      position: absolute;
-      top: 0px; width: 100%;
-      padding: 5px;
-
-      }
-      #controlsInfo{
-        display:none;
-      }
-		.color{
-			width:50px;
-			height:50px;
-		}
-		.colorUnit{
-			display:inline-block;
-		}
-		body{
-			background-color:black;
-			color:white;
-		}
-		select{
-			background-color:black;
-			color:white;
-		}
-		#output{
-		  position: relative;
-			z-index:1;
-			overflow:auto;
-			height:200px;
-			width:25%;
-			 background-color:rgba(34,34,34,0.85);
-			 border-radius: 10px;
-	  		display:inline-block;
-		}
-		body {
-			margin:0;
-			padding:0;
-		}
-	  .pageSlider{
-	  	display:inline-block;
-		  position: relative;
-		  background:url(Silder_assets/bg-h-l.gif) repeat 5px 0;
-		  height: 28px;
-		  width: 380px;
-	  }
-
-	  #value_bg{
-		  width: 50px;
-
-	  }
-	  #controls{
-		  position: relative;
-		z-index:100;
-		width:480px;
-		 background-color:rgba(34,34,34,0.85);
-		 border-radius: 10px;
-		 display: inline-block;
-		 padding:10px;
-
-
-	  }
-	  #container{
-			display:inline-block;
-		  position: absolute;
-		  top:0px;
-		  left:0px;
-			z-index:-1;
-	  }
-
-	  #ScaleContainer{
-			display:inline-block;
-		  position: relative;
-
-	  }
-
-	  input{
-	  	width:3em;
-	  	display:inline-block;
-	  }
-	  #htmlHud{
-		  position: absolute;
-	  }
-
-	  #test1{
-		  position: absolute;
-		  bottom:0%;
-	  }
-	  #debugNode{
-	    position: absolute;
-	    bottom:50px;
-
-	  }
-
   </style>
   </head>
 
@@ -297,6 +191,22 @@
 						<option value="Rectangle">Rectangle</option>
 						<option value="Square">Square</option>
 						<option value="Polygonal">Polygonal</option>
+					</select><br/>
+				Graph Type:&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="GraphType">
+						<option value="ValueGradient">Value Gradient</option>
+						<option value="Random">Random</option>
+						<option value="RandomValue">Random Value</option>
+						<option value="Pattern1">Pattern One</option>
+						<option value="Pattern2">Pattern Two</option>
+						<option value="Pattern3">Pattern Three</option>
+						<option value="Pattern4">Pattern Four</option>
+						<option value="Pattern5">Pattern Five</option>
+						<option value="Pattern6">Pattern Six</option>
+						<option value="Pattern7">Pattern Seven</option>
+						<option value="Pattern8">Pattern Eight</option>
+						<option value="Pattern9">Pattern Nine</option>
+						<option value="Pattern10">Pattern Ten</option>
 					</select><br/>
 				<p>Use mouse wheel to rotate geometry</p>
 			   <div id="size_sliderContainer" class="sliderContainer">
