@@ -1,0 +1,278 @@
+
+      body {
+        color: #000;
+      font:13px/1.231 arial,helvetica,clean,sans-serif;
+        padding: 30px;
+        overflow: hidden;
+      }
+      #container{
+        overflow:visable;
+      top: 5%;
+      left: 5%;
+      }
+
+      #info {
+      color:#000;
+      position: absolute;
+      top: 0px; width: 100%;
+      padding: 5px;
+
+      }
+      #controlsInfo{
+        display:none;
+      }
+    .color{
+      width:50px;
+      height:50px;
+    }
+    .colorUnit{
+      display:inline-block;
+    }
+    body{
+      background-color:black;
+      color:white;
+    }
+    select{
+      background-color:black;
+      color:white;
+    }
+    #output{
+      position: relative;
+      z-index:1;
+      overflow:auto;
+      height:320px;
+      width:480px;
+       background-color:rgba(34,34,34,0.85);
+       border-radius: 10px;
+        display:inline-block;
+    }
+    #output_text{
+      position: absolute;
+      right:0px;
+      top:0px;
+      width:15em;
+    }
+    
+    body {
+      margin:0;
+      padding:0;
+    }
+    .pageSlider{
+      display:inline-block;
+      position: relative;
+      background:url(Silder_assets/bg-h-l.gif) repeat 5px 0;
+      height: 28px;
+      width: 380px;
+    }
+
+    #value_bg{
+      width: 50px;
+
+    }
+    #controls{
+      position: relative;
+      z-index:100;
+      width:480px;
+     background-color:rgba(34,34,34,0.85);
+     border-radius: 10px;
+     display: inline-block;
+     padding:10px;
+    top:-60px;
+
+    }
+    #container{
+      display:inline-block;
+      position: absolute;
+      top:0px;
+      left:0px;
+      z-index:-1;
+    }
+
+    #ScaleContainer{
+      display:inline-block;
+      position: relative;
+
+    }
+
+    input{
+      width:3em;
+      display:inline-block;
+    }
+    #htmlHud{
+      position: absolute;
+      width:480px;
+      top:75px;
+    }
+
+    #test1{
+      position: absolute;
+      bottom:0%;
+    }
+    #debugNode{
+      position: absolute;
+      bottom:50px;
+
+    }
+    .Pattern1{
+      position: relative;
+      width:400px;
+    height:300px;
+    }
+    
+    .row{
+      display: inline-block;
+      }
+      
+    .Pattern1 .Left1,
+    .Pattern1 .Left2,
+    .Pattern1 .Left3,
+    .Pattern1 .Left4
+    {
+      float:left;
+      width:50px;
+      height:30px;
+
+    }
+    .Pattern1 .Mid1,
+    .Pattern1 .Mid2,
+    .Pattern1 .Mid3,
+    .Pattern1 .Mid4
+    {
+      float:left;
+      width:300px;
+      height:60px;
+    }
+
+    .Pattern1 .Right1,
+    .Pattern1 .Right2,
+    .Pattern1 .Right3,
+    .Pattern1 .Right4
+    {
+      float:right;
+      width:50px;
+      height:30px;
+
+    }
+
+    .Pattern2{
+      position: relative;
+      width:300px;
+    height:300px;
+    }
+    .Pattern2 .swatch{
+      width:150px;
+      height:150px;
+    }
+    
+    .Pattern2 .square div{
+      display: inline-block;
+    }
+    
+    .centerSwatch{
+      position: absolute;
+      top:75px;
+      left:75px;
+    }
+
+    .Pattern3{
+      position: relative;
+      width:300px;
+    height:300px;
+    }
+    .Pattern3 .swatch{
+      width:100px;
+      height:100px;
+      
+    }
+    
+    .Pattern3 .tl{
+      position: absolute;
+      top:0px;
+      left:0px;
+    }
+    .Pattern3 .tr{
+      position: absolute;
+      top:0px;
+      right:0px;
+    }
+    .Pattern3 .c{
+      position: absolute;
+      top:100px;
+      left:100px;
+      z-index:1;
+    }
+    .Pattern3 .bl{
+      position: absolute;
+      bottom:0px;
+      left:0px;
+    }
+    .Pattern3 .br{
+      position: absolute;
+      bottom:0px;
+      right:0px;
+    }
+    
+    .Pattern4{
+      position: relative;
+      width:300px;
+    height:300px;
+    }
+    
+    .Pattern4 .swatch{
+      width:60px;
+      height:300px;
+    }
+    .Pattern4 .bar{
+      display: inline-block;
+    }
+    
+    .Pattern5{
+      position: relative;
+      width:300px;
+     height:300px;
+    }
+    
+    .Pattern5 div{
+      position: absolute;
+    
+    }
+    
+    .Pattern5 .box1{
+      width:300px;
+      height:300px;
+      top:0px;
+      left:0px;
+    }
+    
+    .Pattern5 .box2{
+      width:260px;
+      height:260px;
+      left:20px;
+      bottom:0px;
+    }
+    
+    .Pattern5 .box3{
+      width:220px;
+      height:220px;
+      left:40px;
+      bottom:0px;
+    }
+    
+    .Pattern5 .box4{
+      width:180px;
+      height:180px;
+      left:60px;
+      bottom:0px;
+    }
+    
+    .Pattern5 .box5{
+      width:140px;
+      height:140px;
+      left:80px;
+      bottom:0px;
+    }
+        
+        
+        
+        
+    
