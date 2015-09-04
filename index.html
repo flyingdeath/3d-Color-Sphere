@@ -1,148 +1,127 @@
-
 <!doctype html>
-<html>
-	<head>
-		<title>Color Schema Tool</title>
-		<meta charset="utf-8" />
-	<style>
-		<!--
-		.color{
-			width:50px;
-			height:50px;
-		}
-		.colorUnit{
-			display:inline-block;
-		}
-		body{
-			background-color:black;
-			color:white;
-		}
-		select{
-			background-color:black;
-			color:white;
-		}
-		#output{
-			left:0px;
-			z-index:-1;
-			overflow:auto;
-			height:400px;
-			width:1000px;
-			 background-color:rgba(34,34,34,0.85);
-			 border-radius: 10px;
-			 margin-left:auto;
-			 margin-right:auto;
-		}
-		body {
-			margin:0;
-			padding:0;
-		}
-	  .pageSlider{
-	  	display:inline-block;
-		  position: relative;
-		  background:url(Silder_assets/bg-h-l.gif) repeat 5px 0;
-		  height: 28px;
-		  width: 380px;
-	  }
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-	  #value_bg{
-		  width: 50px;
+   <script src="yui/build/yahoo/yahoo.js" type="text/javascript"></script>
+   <script src="yui/build/dom/dom.js" type="text/javascript"></script>
+   <script src="yui/build/event/event.js" type="text/javascript"></script>
+   <script src="yui/build/connection/connection-min.js" type="text/javascript"></script>
+   <script src="yui/build/animation/animation-min.js" type="text/javascript"></script>
+   <script src="yui/build/dragdrop/dragdrop-min.js" type="text/javascript"></script>
+   <script src="yui/build/slider/slider.js" type="text/javascript"></script>
+   <script src="yui/build/json/json-min.js" type="text/javascript"></script>
 
-	  }
-	  #controls{
-		z-index:100;
-		width:1000px;
-		 background-color:rgba(34,34,34,0.85);
-		 border-radius: 10px;
-		 margin-left:auto;
-		 margin-right:auto;
+      <script type="text/javascript" src="three_js/build/three.js"></script>
+
+      <script type="text/javascript" src="three_js/examples/js/controls/FirstPersonControls.js"></script>
 
 
-	  }
-	  #c{
-			display:inline-block;
-	  }
+    <script type="text/javascript" src="lib/deepCopy.js"></script>
+    <script type="text/javascript" src="lib/tinycolor.js"></script>
 
-	  #ScaleContainer{
-			display:inline-block;
-		  position: relative;
-		   vertical-align: top;
+    <script type="text/javascript" src="oop/lightControllerClass.js"></script>
+    <script type="text/javascript" src="oop/modelLoaderClass.js"></script>
+    <script type="text/javascript" src="oop/screenDebuggerClass.js"></script>
+    <script type="text/javascript" src="oop/sceneControllerClass.js"></script>
+    <script type="text/javascript" src="oop/userControlsClass.js"></script>
+  <script type="text/javascript" src="oop/helperClass.js"></script>
+  <script type="text/javascript" src="oop/debugClass.js"></script>
+  <script type="text/javascript" src="oop/dummyControlsClass.js"></script>
+  <script type="text/javascript" src="oop/waterPsychicsClass.js"></script>
+  <script type="text/javascript" src="oop/geometric3dShapes.js"></script>
+  <script type="text/javascript" src="oop/polygonalPoints.js"></script>
+  <script type="text/javascript" src="oop/hudPanels.js"></script>
+  <script type="text/javascript" src="oop/hudClass.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+    <title>3d Color Sphere with, Color Schemas builtin (Color Theory applied)</title>
+    <link rel="icon"
+	      type="image/png"
+      href="fav.png" />
+    <style>
+  </style>
+  </head>
 
-	  }
+  <body>
+      <div id="container">
+      </div>
+      <div id="htmlHud">
+      <div id="controls">
+      <div id="ScaleContainer">
+        <br/>
+        <!--Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-	  input{
-	  	width:3em;
-	  	display:inline-block;
-	  }
+        <select id="SystemType_XColor">
+            <option value="Monochromatic">Monochromatic</option>
+            <option value="Complementary">Complementary</option>
+            <option value="Split-Complementary">Split-Complementary</option>
+            <option value="Analogous">Analogous</option>
+            <option value="Triad">Triad</option>
+            <option value="Tetrad">Tetrad</option>
+            <option value="Geometric">Geometric</option>
+          </select--><br/>
+        Geometric Type:&nbsp;&nbsp;&nbsp;<select id="SystemType">
+            <option value="Complementary">Complementary</option>
+            <option value="Analogous">Analogous</option>
+            <option value="Triadic">Triadic</option>
+            <option value="Split-Complementary">Split-Complementary</option>
+            <option value="Rectangle">Rectangle</option>
+            <option value="Square">Square</option>
+            <option value="Polygonal">Polygonal</option>
+          </select><br/>
+        Graph Type:&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="GraphType">
+            <option value="ValueGradient">Value Gradient</option>
+            <option value="Random">Random</option>
+            <option value="RandomValue">Random Value</option>
+            <option value="Pattern1">Pattern One</option>
+            <option value="Pattern2">Pattern Two</option>
+            <option value="Pattern3">Pattern Three</option>
+            <option value="Pattern4">Pattern Four</option>
+            <option value="Pattern5">Pattern Five</option>
+          </select><br/>
+        <p>Use mouse wheel to rotate geometry</p>
+        <input type="text" id="output_text" value="" />
+         <div id="size_sliderContainer" class="sliderContainer">
+          Size:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="size_valueBox" value="190" />
+           <div id="size_bg" class="yui-h-slider pageSlider">
+             <div id="size_thumb" class="yui-slider-thumb">
+             <img src="Silder_assets/thumb-n.gif">
+             </div>
+           </div>
+         </div>
+         <div id="width_sliderContainer" class="sliderContainer">
+          Width:&nbsp;&nbsp;<input type="text" id="width_valueBox" value="190" />
+           <div id="width_bg" class="yui-h-slider pageSlider">
+             <div id="width_thumb" class="yui-slider-thumb">
+             <img src="Silder_assets/thumb-n.gif">
+             </div>
+           </div>
+         </div>
+         <div id="heigh_sliderContainer" class="sliderContainer">
+        Height:&nbsp;<input type="text" id="height_valueBox" value="190" />
+         <div id="height_bg" class="yui-h-slider pageSlider">
+           <div id="height_thumb" class="yui-slider-thumb">
+           <img src="Silder_assets/thumb-n.gif">
+           </div>
+         </div>
+         </div>
+         <div id="value_sliderContainer" class="sliderContainer">
+        Value:&nbsp;&nbsp;<input type="text" id="value_valueBox" value="10" />
+         <div id="value_bg" class="yui-h-slider pageSlider">
+           <div id="value_thumb" class="yui-slider-thumb">
+           <img src="Silder_assets/thumb-n.gif">
+           </div>
+         </div>
+        </div>
+         </div>
 
-	-->
-	</style>
-		<link rel="stylesheet" type="text/css" href="../flixrmi/yui/build/slider/assets/skins/sam/slider.css" />
-	    <script src="yui/build/yahoo/yahoo.js" type="text/javascript"></script>
-	    <script src="yui/build/dom/dom.js" type="text/javascript"></script>
-	    <script src="yui/build/event/event.js" type="text/javascript"></script>
-		<script src="yui/build/animation/animation-min.js" type="text/javascript"></script>
-		<script src="yui/build/dragdrop/dragdrop-min.js" type="text/javascript"></script>
-	    <script src="yui/build/slider/slider.js" type="text/javascript"></script>
-		<script src="polySystemClass.js"></script>
-
-		<script>
-		</script>
-
-		<script src='1k.js'></script>
-	</head>
-	<body>
-	<div id="controls">
-		<canvas id="c"></canvas>
-
-		<div id="ScaleContainer">
-			<br/>
-			Type:&nbsp;&nbsp;&nbsp;<select id="SystemType">
-					<option value="Complementary">Complementary</option>
-					<option value="Analogous">Analogous</option>
-					<option value="Triadic">Triadic</option>
-					<option value="Split-Complementary">Split-Complementary</option>
-					<option value="Rectangle">Rectangle</option>
-					<option value="Square">Square</option>
-					<option value="Polygonal">Polygonal</option>
-				</select><br/>
-			<p>Use mouse wheel to rotate geometry</p>
-		   <div id="size_sliderContainer" class="sliderContainer">
-				Size:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="size_valueBox" value="190" />
-				 <div id="size_bg" class="yui-h-slider pageSlider">
-				   <div id="size_thumb" class="yui-slider-thumb">
-					 <img src="Silder_assets/thumb-n.gif">
-				   </div>
-				 </div>
-		   </div>
-		   <div id="width_sliderContainer" class="sliderContainer">
-				Width:&nbsp;&nbsp;<input type="text" id="width_valueBox" value="190" />
-				 <div id="width_bg" class="yui-h-slider pageSlider">
-				   <div id="width_thumb" class="yui-slider-thumb">
-					 <img src="Silder_assets/thumb-n.gif">
-				   </div>
-				 </div>
-		   </div>
-		   <div id="heigh_sliderContainer" class="sliderContainer">
-				Height:&nbsp;<input type="text" id="height_valueBox" value="190" />
-				 <div id="height_bg" class="yui-h-slider pageSlider">
-				   <div id="height_thumb" class="yui-slider-thumb">
-					 <img src="Silder_assets/thumb-n.gif">
-				   </div>
-				 </div>
-		   </div>
-		   <div id="value_sliderContainer" class="sliderContainer">
-				Value:&nbsp;&nbsp;<input type="text" id="value_valueBox" value="10" />
-				 <div id="value_bg" class="yui-h-slider pageSlider">
-				   <div id="value_thumb" class="yui-slider-thumb">
-					 <img src="Silder_assets/thumb-n.gif">
-				   </div>
-				 </div>
-		   </div>
-			<br/>
-      	</div>
-
-			</div>
-			</div>
-			<br/> <div id="output"></div>
-	</body>
+      </div>
+    <div id="output"></div>
+    </div>
+  </div>
+  </body>
 </html>
