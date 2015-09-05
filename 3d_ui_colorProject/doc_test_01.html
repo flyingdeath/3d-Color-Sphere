@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+   <script src="yui/build/yahoo/yahoo.js" type="text/javascript"></script>
+   <script src="yui/build/dom/dom.js" type="text/javascript"></script>
+   <script src="yui/build/event/event.js" type="text/javascript"></script>
+   <script src="yui/build/connection/connection-min.js" type="text/javascript"></script>
+   <script src="yui/build/animation/animation-min.js" type="text/javascript"></script>
+   <script src="yui/build/dragdrop/dragdrop-min.js" type="text/javascript"></script>
+   <script src="yui/build/slider/slider.js" type="text/javascript"></script>
+   <script src="yui/build/json/json-min.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="three_js/examples/js/Detector.js"></script>
+    <!--script type="text/javascript" src="three_js/build/Three.js"></script-->
+    	<script src="three_js/src/Three.js"></script>
+		<script src="three_js/src/core/Clock.js"></script>
+		<script src="three_js/src/core/Color.js"></script>
+		<script src="three_js/src/core/Vector2.js"></script>
+		<script src="three_js/src/core/Vector3.js"></script>
+		<script src="three_js/src/core/Vector4.js"></script>
+		<script src="three_js/src/core/Frustum.js"></script>
+		<script src="three_js/src/core/Ray.js"></script>
+		<script src="three_js/src/core/Rectangle.js"></script>
+		<script src="three_js/src/core/Math.js"></script>
+		<script src="three_js/src/core/Matrix3.js"></script>
+		<script src="three_js/src/core/Matrix4.js"></script>
+		<script src="three_js/src/core/Object3D.js"></script>
+		<script src="three_js/src/core/Projector.js"></script>
+		<script src="three_js/src/core/Quaternion.js"></script>
+		<script src="three_js/src/core/Vertex.js"></script>
+		<script src="three_js/src/core/Face3.js"></script>
+		<script src="three_js/src/core/Face4.js"></script>
+		<script src="three_js/src/core/UV.js"></script>
+		<script src="three_js/src/core/Geometry.js"></script>
+		<script src="three_js/src/core/Spline.js"></script>
+		<script src="three_js/src/cameras/Camera.js"></script>
+		<script src="three_js/src/cameras/OrthographicCamera.js"></script>
+		<script src="three_js/src/cameras/PerspectiveCamera.js"></script>
+		<script src="three_js/src/lights/Light.js"></script>
+		<script src="three_js/src/lights/AmbientLight.js"></script>
+		<script src="three_js/src/lights/DirectionalLight.js"></script>
+		<script src="three_js/src/lights/PointLight.js"></script>
+		<script src="three_js/src/lights/SpotLight.js"></script>
+		<script src="three_js/src/materials/Material.js"></script>
+		<script src="three_js/src/materials/LineBasicMaterial.js"></script>
+		<script src="three_js/src/materials/MeshBasicMaterial.js"></script>
+		<script src="three_js/src/materials/MeshLambertMaterial.js"></script>
+		<script src="three_js/src/materials/MeshPhongMaterial.js"></script>
+		<script src="three_js/src/materials/MeshDepthMaterial.js"></script>
+		<script src="three_js/src/materials/MeshNormalMaterial.js"></script>
+		<script src="three_js/src/materials/MeshFaceMaterial.js"></script>
+		<script src="three_js/src/materials/ParticleBasicMaterial.js"></script>
+		<script src="three_js/src/materials/ParticleCanvasMaterial.js"></script>
+		<script src="three_js/src/materials/ParticleDOMMaterial.js"></script>
+		<script src="three_js/src/materials/ShaderMaterial.js"></script>
+		<script src="three_js/src/textures/Texture.js"></script>
+		<script src="three_js/src/textures/DataTexture.js"></script>
+		<script src="three_js/src/objects/Particle.js"></script>
+		<script src="three_js/src/objects/ParticleSystem.js"></script>
+		<script src="three_js/src/objects/Line.js"></script>
+		<script src="three_js/src/objects/Mesh.js"></script>
+		<script src="three_js/src/objects/Bone.js"></script>
+		<script src="three_js/src/objects/SkinnedMesh.js"></script>
+		<script src="three_js/src/objects/MorphAnimMesh.js"></script>
+		<script src="three_js/src/objects/Ribbon.js"></script>
+		<script src="three_js/src/objects/LOD.js"></script>
+		<script src="three_js/src/objects/Sprite.js"></script>
+		<script src="three_js/src/scenes/Scene.js"></script>
+		<script src="three_js/src/scenes/Fog.js"></script>
+		<script src="three_js/src/scenes/FogExp2.js"></script>
+		<script src="three_js/src/renderers/DOMRenderer.js"></script>
+		<script src="three_js/src/renderers/CanvasRenderer.js"></script>
+		<script src="three_js/src/renderers/SVGRenderer.js"></script>
+		<script src="three_js/src/renderers/WebGLShaders.js"></script>
+		<script src="three_js/src/renderers/WebGLRenderer.js"></script>
+		<script src="three_js/src/renderers/WebGLRenderTarget.js"></script>
+		<script src="three_js/src/renderers/WebGLRenderTargetCube.js"></script>
+		<script src="three_js/src/renderers/renderables/RenderableVertex.js"></script>
+		<script src="three_js/src/renderers/renderables/RenderableFace3.js"></script>
+		<script src="three_js/src/renderers/renderables/RenderableFace4.js"></script>
+		<script src="three_js/src/renderers/renderables/RenderableObject.js"></script>
+		<script src="three_js/src/renderers/renderables/RenderableParticle.js"></script>
+		<script src="three_js/src/renderers/renderables/RenderableLine.js"></script>
+		<script src="three_js/src/extras/ColorUtils.js"></script>
+		<script src="three_js/src/extras/GeometryUtils.js"></script>
+		<script src="three_js/src/extras/ImageUtils.js"></script>
+		<script src="three_js/src/extras/SceneUtils.js"></script>
+		<script src="three_js/src/extras/ShaderUtils.js"></script>
+		<script src="three_js/src/extras/core/BufferGeometry.js"></script>
+		<script src="three_js/src/extras/core/Curve.js"></script>
+		<script src="three_js/src/extras/core/CurvePath.js"></script>
+		<script src="three_js/src/extras/core/EventTarget.js"></script>
+		<script src="three_js/src/extras/core/Gyroscope.js"></script>
+		<script src="three_js/src/extras/core/Path.js"></script>
+		<script src="three_js/src/extras/core/Shape.js"></script>
+		<script src="three_js/src/extras/core/TextPath.js"></script>
+		<script src="three_js/src/extras/animation/AnimationHandler.js"></script>
+		<script src="three_js/src/extras/animation/Animation.js"></script>
+		<script src="three_js/src/extras/animation/KeyFrameAnimation.js"></script>
+		<script src="three_js/src/extras/cameras/CubeCamera.js"></script>
+		<script src="three_js/src/extras/cameras/CombinedCamera.js"></script>
+		<script src="three_js/src/extras/controls/FirstPersonControls.js"></script>
+		<script src="three_js/src/extras/controls/PathControls.js"></script>
+		<script src="three_js/src/extras/controls/FlyControls.js"></script>
+		<script src="three_js/src/extras/controls/RollControls.js"></script>
+		<script src="three_js/src/extras/controls/TrackballControls.js"></script>
+		<script src="three_js/src/extras/geometries/CubeGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/CylinderGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/ExtrudeGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/LatheGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/PlaneGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/SphereGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/TextGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/TorusGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/TorusKnotGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/PolyhedronGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/IcosahedronGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/OctahedronGeometry.js"></script>
+		<script src="three_js/src/extras/geometries/TetrahedronGeometry.js"></script>
+		<script src="three_js/src/extras/helpers/AxisHelper.js"></script>
+		<script src="three_js/src/extras/helpers/CameraHelper.js"></script>
+		<script src="three_js/src/extras/modifiers/SubdivisionModifier.js"></script>
+		<script src="three_js/src/extras/loaders/Loader.js"></script>
+		<script src="three_js/src/extras/loaders/BinaryLoader.js"></script>
+		<script src="three_js/src/extras/loaders/ColladaLoader.js"></script>
+		<script src="three_js/src/extras/loaders/JSONLoader.js"></script>
+		<script src="three_js/src/extras/loaders/SceneLoader.js"></script>
+		<script src="three_js/src/extras/loaders/UTF8Loader.js"></script>
+		<script src="three_js/src/extras/objects/MarchingCubes.js"></script>
+		<script src="three_js/src/extras/objects/LensFlare.js"></script>
+		<script src="three_js/src/extras/renderers/plugins/LensFlarePlugin.js"></script>
+		<script src="three_js/src/extras/renderers/plugins/ShadowMapPlugin.js"></script>
+		<script src="three_js/src/extras/renderers/plugins/SpritePlugin.js"></script>
+		<script src="three_js/src/extras/renderers/AnaglyphWebGLRenderer.js"></script>
+		<script src="three_js/src/extras/renderers/CrosseyedWebGLRenderer.js"></script>
+		<script src="three_js/src/extras/shaders/ShaderFlares.js"></script>
+		<script src="three_js/src/extras/shaders/ShaderSprite.js"></script>
+  <script type="text/javascript" src="three_js/examples/js/RequestAnimationFrame.js"></script>
+    <script type="text/javascript" src="three_js/examples/js/Stats.js"></script>
+
+    <script type="text/javascript" src="lib/deepCopy.js"></script>
+    <script type="text/javascript" src="lib/tinycolor.js"></script>
+    <script type="text/javascript" src="oop/lightControllerClass.js"></script>
+    <script type="text/javascript" src="oop/modelLoaderClass.js"></script>
+    <script type="text/javascript" src="oop/screenDebuggerClass.js"></script>
+    <script type="text/javascript" src="oop/sceneControllerClass.js"></script>
+    <script type="text/javascript" src="oop/userControlsClass.js"></script>
+  <script type="text/javascript" src="oop/helperClass.js"></script>
+  <script type="text/javascript" src="oop/debugClass.js"></script>
+  <script type="text/javascript" src="oop/dummyControlsClass.js"></script>
+  <script type="text/javascript" src="oop/waterPsychicsClass.js"></script>
+  <script type="text/javascript" src="oop/geometric3dShapes.js"></script>
+  <script type="text/javascript" src="oop/polygonalPoints.js"></script>
+  <script type="text/javascript" src="oop/hudPanels.js"></script>
+  <script type="text/javascript" src="oop/hudClass.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+    <title>Doc test</title>
+    <style>
+  </style>
+  </head>
+
+  <body>
+      <div id="container">
+      </div>
+      <div id="htmlHud">
+		  <div id="controls">
+			<div id="ScaleContainer">
+				<br/>
+				Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				<select id="SystemType_XColor">
+						<option value="Monochromatic">Monochromatic</option>
+						<option value="Complementary">Complementary</option>
+						<option value="Split-Complementary">Split-Complementary</option>
+						<option value="Analogous">Analogous</option>
+						<option value="Triad">Triad</option>
+						<option value="Tetrad">Tetrad</option>
+						<option value="Geometric">Geometric</option>
+					</select><br/>
+				Geometric Type:&nbsp;&nbsp;&nbsp;<select id="SystemType">
+						<option value="Complementary">Complementary</option>
+						<option value="Analogous">Analogous</option>
+						<option value="Triadic">Triadic</option>
+						<option value="Split-Complementary">Split-Complementary</option>
+						<option value="Rectangle">Rectangle</option>
+						<option value="Square">Square</option>
+						<option value="Polygonal">Polygonal</option>
+					</select><br/>
+				Graph Type:&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="GraphType">
+						<option value="ValueGradient">Value Gradient</option>
+						<option value="Random">Random</option>
+						<option value="RandomValue">Random Value</option>
+						<option value="Pattern1">Pattern One</option>
+						<option value="Pattern2">Pattern Two</option>
+						<option value="Pattern3">Pattern Three</option>
+						<option value="Pattern4">Pattern Four</option>
+						<option value="Pattern5">Pattern Five</option>
+					</select><br/>
+				<p>Use mouse wheel to rotate geometry</p>
+				<input type="text" id="output_text" value="" />
+			   <div id="size_sliderContainer" class="sliderContainer">
+					Size:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="size_valueBox" value="190" />
+					 <div id="size_bg" class="yui-h-slider pageSlider">
+					   <div id="size_thumb" class="yui-slider-thumb">
+						 <img src="Silder_assets/thumb-n.gif">
+					   </div>
+					 </div>
+			   </div>
+			   <div id="width_sliderContainer" class="sliderContainer">
+					Width:&nbsp;&nbsp;<input type="text" id="width_valueBox" value="190" />
+					 <div id="width_bg" class="yui-h-slider pageSlider">
+					   <div id="width_thumb" class="yui-slider-thumb">
+						 <img src="Silder_assets/thumb-n.gif">
+					   </div>
+					 </div>
+			   </div>
+			   <div id="heigh_sliderContainer" class="sliderContainer">
+				Height:&nbsp;<input type="text" id="height_valueBox" value="190" />
+				 <div id="height_bg" class="yui-h-slider pageSlider">
+				   <div id="height_thumb" class="yui-slider-thumb">
+					 <img src="Silder_assets/thumb-n.gif">
+				   </div>
+				 </div>
+			   </div>
+			   <div id="value_sliderContainer" class="sliderContainer">
+				Value:&nbsp;&nbsp;<input type="text" id="value_valueBox" value="10" />
+				 <div id="value_bg" class="yui-h-slider pageSlider">
+				   <div id="value_thumb" class="yui-slider-thumb">
+					 <img src="Silder_assets/thumb-n.gif">
+				   </div>
+				 </div>
+				</div>
+			   </div>
+
+		  </div>
+		<div id="output"></div>
+		</div>
+	</div>
+  </body>
+</html>
