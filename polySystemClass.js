@@ -232,11 +232,8 @@ polySystemClass.prototype.drawPolygon = function(rawDiff, points, pos, closePath
     value = null;
     var range = 100;
     var step = 10/(v*0.1);
-    if(v > 0){
-      for(var i =  (0) ;i<(range);i += step){
-          this.appendOutput(this.colorOfPoints(rawDiff,primePoints,i*0.01 ));
-       //   this.appendOutput(this.colorOfPoints(rawDiff,primePoints,1 - i*0.01 ));
-      }
+    for(var i =  (0) ;i<(range);i += step){
+      this.appendOutput(this.colorOfPoints(rawDiff,primePoints,i*0.01));
     }
 }
 
@@ -249,46 +246,18 @@ polySystemClass.prototype.rotate = function(theta, p1,p2){
   ]
 }
 
-polySystemClass.prototype.appendOutput = function(text){  
-    var output = document.getElementById('output');
-    var oText =  output.innerHTML ;
-    this.deleteDomElement(output);
-    output = null;
-    this.updateInnerHtml('output', oText+text);
-}
 
 polySystemClass.prototype.output = function(text){  
-  this.updateInnerHtml('output', text);
+    var output = document.getElementById('output');
+    output.innerHTML = text;
+    output = null;
 }
 
-polySystemClass.prototype.updateInnerHtml = function(updateId, newHTML){
-    var domRef = document.getElementById(updateId);
-    if(domRef){
-      this.removeChildren(updateId);
-      domRef.innerHTML = newHTML;
-    }
-    this.deleteDomElement(domRef);
-    domRef = null;
- }
-
-polySystemClass.prototype.deleteDomElement = function(ref){
-  var a = [ref];
-  delete a[0];
-  ref = null;
-  a = null;
+polySystemClass.prototype.appendOutput = function(text){  
+    var output = document.getElementById('output');
+    output.innerHTML += text;
+    output = null;
 }
-  
-polySystemClass.prototype.removeChildren = function(id){
-   var domObj = document.getElementById(id);
-   var childrenLength = domObj.childNodes.length;
-   for(var i = childrenLength;i>0;i--){
-      domObj.removeChild(domObj.childNodes[0]);
-      delete domObj.childNodes[0];
-   }
-   this.deleteDomElement(domObj);
-   domObj = null;
-}
-
  
  polySystemClass.prototype.colorOfPoints = function(rawDiff,points,value) {
     var set = [];
