@@ -1,60 +1,127 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>3d-color-sphere by flyingdeath</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+   <script src="yui/build/yahoo/yahoo.js" type="text/javascript"></script>
+   <script src="yui/build/dom/dom.js" type="text/javascript"></script>
+   <script src="yui/build/event/event.js" type="text/javascript"></script>
+   <script src="yui/build/connection/connection-min.js" type="text/javascript"></script>
+   <script src="yui/build/animation/animation-min.js" type="text/javascript"></script>
+   <script src="yui/build/dragdrop/dragdrop-min.js" type="text/javascript"></script>
+   <script src="yui/build/slider/slider.js" type="text/javascript"></script>
+   <script src="yui/build/json/json-min.js" type="text/javascript"></script>
+
+      <script type="text/javascript" src="three_js/build/three.js"></script>
+
+      <script type="text/javascript" src="three_js/examples/js/controls/FirstPersonControls.js"></script>
+
+
+    <script type="text/javascript" src="lib/deepCopy.js"></script>
+    <script type="text/javascript" src="lib/tinycolor.js"></script>
+
+    <script type="text/javascript" src="oop/lightControllerClass.js"></script>
+    <script type="text/javascript" src="oop/modelLoaderClass.js"></script>
+    <script type="text/javascript" src="oop/screenDebuggerClass.js"></script>
+    <script type="text/javascript" src="oop/sceneControllerClass.js"></script>
+    <script type="text/javascript" src="oop/userControlsClass.js"></script>
+  <script type="text/javascript" src="oop/helperClass.js"></script>
+  <script type="text/javascript" src="oop/debugClass.js"></script>
+  <script type="text/javascript" src="oop/dummyControlsClass.js"></script>
+  <script type="text/javascript" src="oop/waterPsychicsClass.js"></script>
+  <script type="text/javascript" src="oop/geometric3dShapes.js"></script>
+  <script type="text/javascript" src="oop/polygonalPoints.js"></script>
+  <script type="text/javascript" src="oop/hudPanels.js"></script>
+  <script type="text/javascript" src="oop/hudClass.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+    <title>3d Color Sphere with, Color Schemas builtin (Color Theory applied)</title>
+    <link rel="icon"
+	      type="image/png"
+      href="fav.png" />
+    <style>
+  </style>
   </head>
+
   <body>
-    <section class="page-header">
-      <h1 class="project-name">3d-color-sphere</h1>
-      <h2 class="project-tagline">3d Color Sphere with, Color Schemas builtin</h2>
-      <a href="https://github.com/flyingdeath/3d-Color-Sphere" class="btn">View on GitHub</a>
-      <a href="https://github.com/flyingdeath/3d-Color-Sphere/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/flyingdeath/3d-Color-Sphere/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+      <div id="container">
+      </div>
+      <div id="htmlHud">
+      <div id="controls">
+      <div id="ScaleContainer">
+        <br/>
+        <!--Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <section class="main-content">
-      <p>Website <a href="http://flyingdeath.github.io/3d-Color-Sphere">http://flyingdeath.github.io/3d-Color-Sphere</a></p>
+        <select id="SystemType_XColor">
+            <option value="Monochromatic">Monochromatic</option>
+            <option value="Complementary">Complementary</option>
+            <option value="Split-Complementary">Split-Complementary</option>
+            <option value="Analogous">Analogous</option>
+            <option value="Triad">Triad</option>
+            <option value="Tetrad">Tetrad</option>
+            <option value="Geometric">Geometric</option>
+          </select--><br/>
+        Geometric Type:&nbsp;&nbsp;&nbsp;<select id="SystemType">
+            <option value="Complementary">Complementary</option>
+            <option value="Analogous">Analogous</option>
+            <option value="Triadic">Triadic</option>
+            <option value="Split-Complementary">Split-Complementary</option>
+            <option value="Rectangle">Rectangle</option>
+            <option value="Square">Square</option>
+            <option value="Polygonal">Polygonal</option>
+          </select><br/>
+        Graph Type:&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="GraphType">
+            <option value="ValueGradient">Value Gradient</option>
+            <option value="Random">Random</option>
+            <option value="RandomValue">Random Value</option>
+            <option value="Pattern1">Pattern One</option>
+            <option value="Pattern2">Pattern Two</option>
+            <option value="Pattern3">Pattern Three</option>
+            <option value="Pattern4">Pattern Four</option>
+            <option value="Pattern5">Pattern Five</option>
+          </select><br/>
+        <p>Use mouse wheel to rotate geometry</p>
+        <input type="text" id="output_text" value="" />
+         <div id="size_sliderContainer" class="sliderContainer">
+          Size:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="size_valueBox" value="190" />
+           <div id="size_bg" class="yui-h-slider pageSlider">
+             <div id="size_thumb" class="yui-slider-thumb">
+             <img src="Silder_assets/thumb-n.gif">
+             </div>
+           </div>
+         </div>
+         <div id="width_sliderContainer" class="sliderContainer">
+          Width:&nbsp;&nbsp;<input type="text" id="width_valueBox" value="190" />
+           <div id="width_bg" class="yui-h-slider pageSlider">
+             <div id="width_thumb" class="yui-slider-thumb">
+             <img src="Silder_assets/thumb-n.gif">
+             </div>
+           </div>
+         </div>
+         <div id="heigh_sliderContainer" class="sliderContainer">
+        Height:&nbsp;<input type="text" id="height_valueBox" value="190" />
+         <div id="height_bg" class="yui-h-slider pageSlider">
+           <div id="height_thumb" class="yui-slider-thumb">
+           <img src="Silder_assets/thumb-n.gif">
+           </div>
+         </div>
+         </div>
+         <div id="value_sliderContainer" class="sliderContainer">
+        Value:&nbsp;&nbsp;<input type="text" id="value_valueBox" value="10" />
+         <div id="value_bg" class="yui-h-slider pageSlider">
+           <div id="value_thumb" class="yui-slider-thumb">
+           <img src="Silder_assets/thumb-n.gif">
+           </div>
+         </div>
+        </div>
+         </div>
 
-<p>This project is 3d Color Sphere with, Color Schemas builtin, Implementing HSV
-Think of being inside 3d Color Sphere where HSV are mapped to a Polar coordinate system pole theta phi.</p>
-
-<p>Geometric Polygon Type Schemas (Color Theory) :
-Use mouse wheel to rotate geometry in the x y plan</p>
-
-<p>Complementary (size slider)
-Analogous  (size slider)
-Triadic (size slider)
-Split-Complementary  (size slider)
-Rectangle (width height slider)
-Square (width height slider)
-Polygonal (click to create polygon size slider )</p>
-
-<p>Value Gradient (value slider)
-Random swatch generator (value slider) / Random Value
-5 swatch Color Patterns </p>
-
-<p>Using  HTML, CSS and Javascript, YUI, Three JS, WebGL.</p>
-
-<p>WebGL Needed to work, so if it doesn't work on your system try it on a WebGL Video Card.
-Nvidia and ATI Both make Video Card that support WebGL.</p>
-
-<p><a href="https://en.wikipedia.org/wiki/WebGL">https://en.wikipedia.org/wiki/WebGL</a>
-<a href="https://www.khronos.org/webgl/wiki/BlacklistsAndWhitelists">https://www.khronos.org/webgl/wiki/BlacklistsAndWhitelists</a></p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/flyingdeath/3d-Color-Sphere">3d-color-sphere</a> is maintained by <a href="https://github.com/flyingdeath">flyingdeath</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
+      </div>
+    <div id="output"></div>
+    </div>
+  </div>
   </body>
 </html>
