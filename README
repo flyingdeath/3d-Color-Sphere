@@ -1,0 +1,29 @@
+
+
+This project is 3d Color Sphere with, Color Schemas builtin, Implementing HSV
+Think of being inside 3d Color Sphere where HSV are mapped to a Polar coordinate system pole theta phi.
+
+Geometric Polygon Type Schemas (Color Theory) :
+Use mouse wheel to rotate geometry in the x y plan
+
+Complementary (size slider)
+Analogous  (size slider)
+Triadic (size slider)
+Split-Complementary  (size slider)
+Rectangle (width height slider)
+Square (width height slider)
+Polygonal (click to create polygon size slider )
+
+Value Gradient (value slider)
+Random swatch generator (value slider) / Random Value
+5 swatch Color Patterns 
+
+Using  HTML, CSS and Javascript, YUI, Three JS, WebGL.
+
+For WebGL to work you need a applicable video card/chip.
+Nvidia and ATI Both make video card/chip that support WebGL.
+
+Test for WebGL here https://get.webgl.org/ 
+
+https://en.wikipedia.org/wiki/WebGL
+https://www.khronos.org/webgl/wiki/BlacklistsAndWhitelists
