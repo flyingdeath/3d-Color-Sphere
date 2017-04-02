@@ -4,6 +4,10 @@ This project is 3d Color Sphere with, Color Schemas builtin, Implementing HSV
 Think of being inside 3d Color Sphere where HSV are mapped to a Polar coordinate system pole theta phi.
 
 Geometric Polygon Type Schemas (Color Theory) :
+click inside sphere to get color swatchs
+color show in hex code
+to update pattern change slider or use mouse wheel 
+
 Use mouse wheel to rotate geometry in the x y plan
 
 Complementary (size slider)
