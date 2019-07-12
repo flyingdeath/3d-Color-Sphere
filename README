@@ -8,15 +8,18 @@ click inside sphere to get color swatchs
 color show in hex code
 to update pattern change slider or use mouse wheel 
 
-Use mouse wheel to rotate geometry in the x y plan
+Use mouse wheel to rotate polygons in the x y plan
 
-Complementary (size slider)
-Analogous  (size slider)
-Triadic (size slider)
-Split-Complementary  (size slider)
-Rectangle (width height slider)
-Square (width height slider)
-Polygonal (click to create polygon size slider )
+Select diferent polygon shapes to create different color schemas
+Edit the polygon shape to change the color schema
+
+Complementary (size slider) a line 
+Analogous  (size slider)    two lines joined together
+Triadic (size slider)     a triangle 
+Split-Complementary  (size slider)  two lines joined together forming a 'V'
+Rectangle (width height slider) a rectangle
+Square (width height slider) a square
+Polygonal (click to create polygon size slider ) create a polygonal 
 
 Value Gradient (value slider)
 Random swatch generator (value slider) / Random Value
