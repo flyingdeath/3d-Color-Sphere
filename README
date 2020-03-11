@@ -6,12 +6,12 @@ Think of being inside 3d Color Sphere where HSV hue, saturation, and value are m
 
 How to Use:
 click inside sphere to pick a color, shown in the 3d space as well as color swatchs patterns on the left
-color shown in hex code (#RRGGBB) red green blue in hexadecimal  
+color shown in hex code at the top of html ui panel on the left, color swatchs below also hex code
+(#RRGGBB) red green blue in hexadecimal  
 #000000 or black, #FFFFFF or white, #FF0000 or red and so on 
 read more about hex code here 
 https://en.wikipedia.org/wiki/Web_colors
-the hex code at the top of html ui panel on the left, color swatchs below also hex code
-
+the hex code 
 Select diferent polygon shapes to create different color schemas
 Edit the polygon shape to change the color schema
 Use mouse wheel to rotate polygons in the x y plan
