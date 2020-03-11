@@ -5,7 +5,8 @@ Think of being inside 3d Color Sphere where HSV Hue, Saturation, and value are m
 
 Geometric Polygon Type Schemas (Color Theory) :
 click inside sphere to pick a color shown in the 3d space 
-color shown in hex code (#RRGGBB) red green blue in hexadecimal   #000000 or black, #FFFFFF or white, #FF0000 or red and so on 
+color shown in hex code (#RRGGBB) red green blue in hexadecimal  
+#000000 or black, #FFFFFF or white, #FF0000 or red and so on 
 read more about hex code here 
 https://wikimarkup.fandom.com/wiki/HEX_Colors
 the hex code at the top of html ui panel on the left, color swatchs below also hex code
