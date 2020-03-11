@@ -4,9 +4,12 @@ This project is 3d Color Sphere same thing as a color wheel but in 3d a color sp
 Think of being inside 3d Color Sphere where HSV Hue, Saturation, and value are mapped to a Polar coordinate system pole theta phi.
 
 Geometric Polygon Type Schemas (Color Theory) :
-click inside sphere to get color swatchs
-color shown in hex code #000000 or black (#RRGGBB) red green blue in hexadecimal  
-to update pattern change slider or use mouse wheel 
+click inside sphere to pick a color shown in the 3d space 
+color shown in hex code (#RRGGBB) red green blue in hexadecimal   #000000 or black, #FFFFFF or white, #FF0000 or red and so on 
+read more about hex code here 
+https://wikimarkup.fandom.com/wiki/HEX_Colors
+the hex code at the top of html ui panel on the left, color swatchs below also hex code
+to update patterns change slider or use mouse wheel 
 
 Use mouse wheel to rotate polygons in the x y plan
 
