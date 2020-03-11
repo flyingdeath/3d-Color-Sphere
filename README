@@ -1,6 +1,6 @@
 
 
-This project is 3d Color Sphere same thing as a color wheel but in 3d a color sphere with, Color Schemas builtin, Implementing HSV
+This project is 3d Color Sphere same thing as a color wheel but in 3d, a 3d color sphere with, Color Schemas builtin, Implementing HSV
 Think of being inside 3d Color Sphere where HSV Hue, Saturation, and value are mapped to a Polar coordinate system pole theta phi.
 
 Geometric Polygon Type Schemas (Color Theory) :
