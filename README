@@ -5,7 +5,7 @@ Think of being inside 3d Color Sphere where HSV are mapped to a Polar coordinate
 
 Geometric Polygon Type Schemas (Color Theory) :
 click inside sphere to get color swatchs
-color show in hex code
+color shown in hex code #000000 or black (#RRGGBB) red green blue in hexadecimal  
 to update pattern change slider or use mouse wheel 
 
 Use mouse wheel to rotate polygons in the x y plan
