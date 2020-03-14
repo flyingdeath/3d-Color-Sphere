@@ -2,7 +2,13 @@
 
 This project is 3d Color Sphere same thing as a color wheel but in 3d, a 3d color sphere, with Color Schemas builtin, Implementing HSV
 Think of being inside 3d Color Sphere where HSV hue, saturation, and value are mapped to a Polar coordinate system pole, theta, phi.
+you are anchored to the 0,0,0 point and turn the camera with the mouse xy browser window centered at the middle of the srceen
+to rotate around the 0,0,0 point move the mouse in the direction you wish from the center of the browser window
+the farther you move the mouse from the center of the browser the faster the camera will move 
 
+tinting is +z direction
+shading is -z direction
+xy hue + saturation
 
 How to Use:
 click inside sphere to pick a color, shown in the 3d space as well as color swatchs patterns on the left
